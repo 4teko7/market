@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<style>
+#id_articleImage{
+
+
+    background-color: cornflowerblue;
+    height:3rem;
+}
+
+</style>
+<div class="container col-md-8 col-lg-6 col-xs-8">
+    <div class="container">
+    <div class="row">
+
+        <h1>{{lang.addArticle}}</h1>
+            <hr>
+            <form action="/articles/addarticle/" method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {{form.media}}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-danger"  onclick = "upload()">{{lang.addArticle}}</button>
+                <scan id = "uploadProgress"></scan>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!--<input type="file" capture = "camera" accept="image/*,application/pdf">-->
+
+
+
+<br>
+<br>
+<script>
+    function upload(){
+        progress = document.getElementById("uploadProgress")
+        progress.innerHTML = "<div class='alert alert-primary' style = 'margin-top : 0.5rem;'>Please Wait...</div>"
+    }
+</script>
+{% endblock body %}
+

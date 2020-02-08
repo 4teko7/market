@@ -1,0 +1,98 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/navbar/navbar.css' %}">
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <form action = "/language/" method = "GET">
+    <input name = "currentPage" type="hidden" value = "{{ request.get_full_path }}">
+    <button  type = "submit" class="btn btn-info" style = "margin-right:0.5rem;">{{lang.language}}</button>
+  </form>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">
+          <i class="fa fa-home"></i>
+          {{lang.mainPage}}
+          <span class="sr-only">(current)</span>
+          </a>
+      </li>
+      {% if request.user.is_authenticated %}
+    
+
+      <li class="nav-item">
+        <a class="nav-link" href="/users/about/">
+          <i style= "" class="fa fas fa-user">
+          </i>
+          {{lang.about}}
+        </a>
+      </li>
+      
+  <li class="nav-item">
+        <a class="nav-link" href="/users/logout/">
+          <i class="fa fas fa-power-off">
+          </i>
+          {{lang.logout}}
+        </a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/users/about/">
+      <i style= "" class="fa fas fa-user">
+      </i>
+      {{lang.product}}
+    </a>
+  </li>    
+
+  
+      
+{% else %}
+
+<li class="nav-item">
+  <a class="nav-link" href="/users/about/">
+    <i style= "" class="fa fas fa-user">
+    </i>
+    {{lang.product}}
+  </a>
+</li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-envelope-o">
+          </i>
+          {{lang.loginregister}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/users/register/">{{lang.register}}</a>
+          <a class="dropdown-item" href="/users/login/">{{lang.login}}</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+        </div>
+      </li>
+  {% endif %}
+      
+    </ul>
+<ul class="navbar-nav ">
+    {% if request.user.is_authenticated %}
+    
+     
+      
+  {% endif %}
+  
+</ul>
+    <form action = '/searchArticle/' class="form-inline my-2 my-lg-0" style = "margin-right:0.5rem;">
+      <input class="form-control mr-sm-2" name = "keywords" style = "width:8rem;" type="text" placeholder="{{lang.searchArticle}}" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{lang.search}}</button>
+    </form>
+  </div>
+</nav>
+
+
+<script>
+
+
+
+</script>
