@@ -7,6 +7,22 @@
 <link href='{% static 'css/todos.css' %}' rel="stylesheet" id="bootstrap-css">
 
 <style>
+  @media only screen and (max-width: 600px) {
+    #smallScreen {
+      display: block;
+    }
+    #largeScreen {
+        display: none;
+      }
+  }
+  @media only screen and (min-width: 600px) {
+    #smallScreen {
+        display: none;
+      }
+      #largeScreen {
+          display: block;
+        }
+  }
 
   .media {
     display: "flex";
@@ -27,7 +43,6 @@ hr{
 
         <!-- Post Content Column -->
         <div class="col-lg-8 col-md-8 col-xs-12">
-          <button id = "changePageStyle" class = "btn btn-primary pull-right" style = "margin-top:2rem;" onclick = "changePageStyle()">{{lang.changePageStyle}}</button>
           <!-- Title -->
           <div style="text-align: center; margin-top: 2rem; margin-bottom:2rem; margin-right:1rem;" class = "pull-right">
             <button type = "button" onclick="history.back()" class="btn btn-primary">{{lang.goBack}}</button>
@@ -55,15 +70,44 @@ hr{
          {% if product.productImage %}
           <img class="img-fluid rounded" style = "width:100%;"src="{{product.productImage.url}}" alt="My Image">
 
+          <p class="lead">{{product.content|safe}}</p>
+          <hr>
+          <strong><em><h2 style = "text-align: center;">{{lang.ingredient}}</h2></em></strong>
           <hr>
           {% endif %}
-          <!-- Post Content -->
-          <p class="lead">{{product.content|safe}}</p>
-          <hr >
+          {% if ingredients %}
+          <div class="table-responsive">
+            <div class = "container " style = "text-align: center;">
+          <table class = "table" >
+            <thead>
+              
 
+            {% for ingredient in ingredients %}
+            <tr>
+            <th><strong >{{ingredient.name}}</strong></th>
+          </tr>  
+        </thead>
+        <tbody>
+          <tr>
+        <td><img class="img-fluid rounded" style = "width:10rem; margin:auto auto;"src="{{ingredient.ingredientImage.url}}" alt="My Image"></td>
+      </tr>
+      </tbody>
+            {% endfor %}
+
+          
+
+          </table>
+        </div>
+        </div>
+        </div>
+          {% endif %}
+          <!-- Post Content -->
+          
+         
+        <br>
           <!-- ADD COMMENT  -->
-          <div class="container">
-            <div class="row">
+          <div class="container" >
+            <div class="row" >
 
                 <div style = "text-align:center; " class="col align-self-center">
                 <h1>{{lang.whatDoYouThink}}</h1>
@@ -153,7 +197,6 @@ hr{
 
       </div>
       <!-- /.row -->
-    </div>
 
     <br><br>
 

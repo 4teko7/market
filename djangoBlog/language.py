@@ -83,6 +83,7 @@ tr = {
     'myProfile':"Profilim",
     'options':"Seçenekler",
     'allProducts':"Tüm Ürünler",
+    "ingredient":"İçindekiler",
 
 
 # MESSAGES
@@ -201,6 +202,7 @@ en = {
     'myProfile':"My Profile",
     'options':"Options",
     'allProducts':"All Products",
+    "ingredient":"Ingredients",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",

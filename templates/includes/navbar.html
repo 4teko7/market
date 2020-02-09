@@ -105,14 +105,14 @@
   <form action = "/language/" method = "GET">
     <input name = "currentPage" type="hidden" value = "{{ request.get_full_path }}">
     <button  type = "submit"  class="btn btn-info"
-          style="color:white; background-color:black;  margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;">{{lang.language}}</button>
+          style="color:white; background-color:black;  margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;">{{lang.language}}</button>
   </form>
   
 </th>
 
       <th>    
       <a href="/"><button  class="btn btn-success pull-right"
-    style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-home"></i> <br>{{lang.mainPage}}</button></a>
+    style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;"><i class="fa fa-home"></i> <br>{{lang.mainPage}}</button></a>
         </th>
       
       </tr>
@@ -127,7 +127,7 @@
       
       <th>  
         <a href="/users/logout/"><button  class="btn btn-success pull-right"
-          style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fas fa-power-off"> </i>  {{lang.logout}}</button></a>
+          style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;"><i class="fa fas fa-power-off"> </i>  {{lang.logout}}</button></a>
       </th>
     
   
@@ -136,17 +136,17 @@
 
 <th> 
   <a href="/products/allproducts/"><button  class="btn btn-success pull-right"
-    style="color:white; background-color:blue; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>  <strong class = "nav-item active" > {{lang.product}}</strong></button></a>
+    style="color:white; background-color:blue; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;"><img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>  <strong class = "nav-item active" > {{lang.product}}</strong></button></a>
 </th>
 <th> 
 
   <a href="/users/register/"><button  class="btn btn-success pull-right"
-    style="color:white; background-color:blueviolet; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.register}}</strong></button></a>
+    style="color:white; background-color:blueviolet; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.register}}</strong></button></a>
 </th>
 <th> 
 
   <a href="/users/login/"><button  class="btn btn-success pull-right"
-    style="color:white; margin-top:1rem; font-size:1rem; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.login}}</strong></button></a>
+    style="color:white; margin-top:1rem; font-size:1rem; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:7rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.login}}</strong></button></a>
 </th>   
 
   {% endif %}

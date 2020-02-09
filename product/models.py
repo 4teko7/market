@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from ckeditor.fields import RichTextField
 from django.db import models
+from ingredient.models import Ingredient
 # Create your models here.
 
 class Product(models.Model):
@@ -16,6 +17,7 @@ class Product(models.Model):
     productImage = models.ImageField(blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
     # productAmount = models.IntegerField(default = 1,verbose_name="Ürün Miktarı/Product Amount")
     productPrice = models.FloatField(blank = False,null = False,verbose_name = "Fiyat/Price")
+    ingredients = models.ManyToManyField(Ingredient, blank = True,related_name = "İçerik/Ingredient+")
     # orderedDate = models.DateTimeField(default = '',verbose_name = lang2['orderedDate'])
     # orderStatus = models.CharField(max_length = 100,default = "Sipariş Alındı.",verbose_name = lang2['orderStatus'])
     class Meta:

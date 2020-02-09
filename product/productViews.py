@@ -104,6 +104,8 @@ def productDetail(req,id):
     context['comments'] = comments
     if(product[0].productImage):
         context["image"] = product[0].productImage.url
+    if(product[0].ingredients):
+        context["ingredients"] = product[0].ingredients.all()
     if(product[0].isPrivate):
         return render(req,"warnings/productprivate.html",context)
     else:

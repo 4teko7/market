@@ -3,7 +3,7 @@ from djangoBlog.language import *
 
 lang2 = tr
 
-def productLanguage(lang3):
+def ingredientLanguage(lang3):
     global lang2
     lang2 = lang3
 
