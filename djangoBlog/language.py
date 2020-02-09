@@ -82,7 +82,7 @@ tr = {
     'completed':"Tamamlandı.",
     'myProfile':"Profilim",
     'options':"Seçenekler",
-
+    'allProducts':"Tüm Ürünler",
 
 
 # MESSAGES
@@ -200,6 +200,7 @@ en = {
     'completed':"Completed",
     'myProfile':"My Profile",
     'options':"Options",
+    'allProducts':"All Products",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",

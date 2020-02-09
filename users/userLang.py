@@ -1,7 +1,7 @@
 from djangoBlog.language import *
 
 
-lang2 = en
+lang2 = tr
 
 def userLanguage(lang3):
     global lang2

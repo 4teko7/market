@@ -27,8 +27,11 @@ def check(req):
 
 @login_required(login_url="/users/login/")
 def about(req):
+
+    from .userLang import lang2
     check(req)
     global context
+
     profile = UserProfile.objects.filter(user = req.user)
     if(profile):
         if(profile[0].profileImage):
@@ -37,11 +40,12 @@ def about(req):
     return render(req,"about.html",context)
 
 def registerUser(req):
-    from .userLang import lang2
 
-    form = registerForm()
+    from .userLang import lang2
     check(req)
     global context
+
+    form = registerForm()
     context['form'] = form
 
     if(req.method == "POST"):
@@ -67,10 +71,10 @@ def registerUser(req):
 
 def loginUser(req):
     from .userLang import lang2
-
-    form = loginForm()
     check(req)
     global context
+
+    form = loginForm()
     context['form'] = form
     if(req.method == "POST"):
         form = loginForm(req.POST)
@@ -95,26 +99,29 @@ def loginUser(req):
 
 def logoutUser(req):
     from .userLang import lang2
+    check(req)
+    global context
 
     logout(req)
     messages.success(req,lang2['logoutMessage'])
-    check(req)
-    global context
     return render(req,"index.html",context)
 
 @login_required(login_url="/users/login/")
 def editProfile(req):
+    from .userLang import lang2
+    check(req)
+    global context
 
     user = User.objects.filter(username = req.user.username)
     form = ProfileForm(initial={'firstname': user[0].first_name,'lastname':user[0].last_name,'email':user[0].email})
-    check(req)
-    global context
     context['form'] = form
     return render(req,'editprofile.html',context)
 
 @login_required(login_url="/users/login/")
 def saveProfile(req):
     from .userLang import lang2
+    check(req)
+    global context
 
     user = User.objects.get(username = req.user.username)
     form = ProfileForm(req.POST)
@@ -178,10 +185,10 @@ def addProfileImage(req):
 @login_required(login_url="/users/login/")
 def changePassword(req):
     from .userLang import lang2
-
-    form = ChangePassword()
     check(req)
     global context
+
+    form = ChangePassword()
     context['form'] = form
     if(req.method == "POST"):
         form = ChangePassword(req.POST)
@@ -216,10 +223,10 @@ def changePassword(req):
 @login_required(login_url="/users/login/")
 def changeUsername(req):
     from .userLang import lang2
-
-    form = ChangeUsername()
     check(req)
     global context
+
+    form = ChangeUsername()
     context['form'] = form
     if(req.method == "POST"):
         form = ChangeUsername(req.POST)
@@ -246,7 +253,10 @@ def changeUsername(req):
 
 @login_required(login_url="/users/login/")
 def profile(req,id):
+    from .userLang import lang2
     check(req)
+    global context
+
     user = User.objects.get(id = id)
     context['user'] = user
     profile = UserProfile.objects.filter(user = user)
@@ -258,14 +268,15 @@ def profile(req,id):
 
 def buyProduct(req,id):
     from .userLang import lang2
+    check(req)
+    global context
+
     product = Product.objects.filter(id = id)
     
     if(req.user.is_authenticated):
         profile = UserProfile.objects.filter(user = req.user)
         form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":1})
     else:form = buyProductForm()
-    check(req)
-    global context
     context['form'] = form
     context['product'] = product[0]
     if(req.method == "POST"):
@@ -281,18 +292,7 @@ def buyProduct(req,id):
                 order = Order(product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
                 messages.warning(req,lang2['formInvalid'])
-            # productt.productAmount = 20
 
-            # productt.productAmount = req.POST.get("productAmount")
-            # productt.title = "@@@@@@@@@@@@@@@@@@"
-            # print("PRODUCT AMOUNT : ",productt.productAmount)
-            # print("PRODUCT AMOUNT : ",product[0].productAmount)
-            # productt.save()
-            # print("PRODUCT AMOUNT : ",productt.productAmount)
-            # profile[0].currentOrders.add(productt)
-            # print("PRODUCT AMOUNT : ",profile[0].currentOrders.all()[0].productAmount)
-            # for i in profile[0].currentOrders.all():
-            #     print(i.productAmount)
             return HttpResponseRedirect('/')
         else:
             messages.warning(req,lang2['formInvalid'])

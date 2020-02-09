@@ -20,21 +20,7 @@ contex = {}
 def check(req):
     from .productLang import lang2
     global context
-    if(req.user.is_authenticated):
-        context = {
-            "lang":lang2
-             }
-    else:
-        context = {
-                    "lang":lang2
-            }
-# "allArticles":allArticles,"myTodos":myTodos,"myArticles":myArticles
-
-# Create your views here.
-
-
-
-# Create your views here.
+    context = {"lang":lang2}
 
 @login_required(login_url="/users/login/")
 def addProduct(req):
@@ -72,10 +58,12 @@ def myProducts(req):
 
 
 def productDetail(req,id):
-    parsed = []
     global context
+    parsed = []
     commentForm = CommentForm()
     check(req)
+
+
     product = Product.objects.filter(id = id)
     
     if(not product):
@@ -132,11 +120,11 @@ def allProducts(req):
 
 @login_required(login_url="/users/login/")
 def editProduct(req,id):
-    global context
     from .productLang import lang2
 
-    check(req)
+    global context
 
+    check(req)
     productOld = Product.objects.filter(id=id,author = req.user)
     if(not productOld):
         return render(req,"warnings/canteditproduct.html",context)
@@ -176,6 +164,9 @@ def editProduct(req,id):
 @login_required(login_url="/users/login/")
 def deleteProduct(req,id):
     from .productLang import lang2
+
+    global context
+    check(req)
     product = Product.objects.filter(id = id , author = req.user)
     if(not product):
         return render(req,"warnings/pagenotfound.html",context)
@@ -188,9 +179,7 @@ def deleteProduct(req,id):
 
 def searchProduct(req):
     global context
-    from .productLang import lang2
     check(req)
-    context['lang'] = lang2
     keywords = req.GET.get('keywords')
     if(keywords):
         products = Product.objects.filter(title__contains = keywords)
@@ -200,11 +189,13 @@ def searchProduct(req):
 
 @login_required(login_url="/users/login/")
 def allOrders(req):
+    global context
+    check(req)
+
     if(not req.user.is_superuser):
         return HttpResponseRedirect('/')
     orders = Order.objects.all()
-    check(req)
-    global context
+    
     context['orders'] = orders
     context['date'] = datetime.datetime.now()
     return render(req,"allorders.html",context)
