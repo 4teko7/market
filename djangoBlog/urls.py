@@ -57,11 +57,12 @@ def mainPage(req):
     global context
 
     check(req)
+    currentOrders = ""
+    completedOrders = ""
     if(req.user.is_authenticated):
         profile = UserProfile.objects.filter(user = req.user)
         print(profile[0].user)
-        currentOrders = ""
-        completedOrders = ""
+        
         if(profile):
             currentOrders = profile[0].currentOrders
             completedOrders = profile[0].completedOrders
@@ -69,9 +70,8 @@ def mainPage(req):
                 context['profileImage'] = profile[0].profileImage
     context['date'] = datetime.datetime.now()
     context['lang'] = lang
-    context['currentOrders'] = currentOrders.all()
-    context['completedOrders'] = completedOrders.all()
-    print("Current Orders @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@: ",currentOrders.all())
+    if(currentOrders): context['currentOrders'] = currentOrders.all()
+    if(completedOrders): context['completedOrders'] = completedOrders.all()
 
     return render(req,"index.html",context)
 

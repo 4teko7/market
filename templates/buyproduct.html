@@ -8,17 +8,19 @@
     background-color: cornflowerblue;
     height:3rem;
 }
-
+    
 </style><br>
+{% if request.user.is_authenticated %}
 <div class="container col-md-8 col-lg-6 col-xs-8">
     <div class="container" style = "text-align:center;">
     <div class="row">
 
         <h1>{{lang.addArticle}}</h1>
             <hr>
-            <form action="/users/order/{{product.id}}" method="POST">
+            <form action="/users/buyproduct/{{product.id}}/" method="POST">
                 {% csrf_token %}
-                
+                {{form|crispy}}
+                <input type="number" name="productAmount" value="1" required="" class="numberinput form-control" id="id_productAmount"> 
                 <button type="submit" class="btn btn-danger">{{lang.completeTheOrder}}</button>
                 
             </form>
@@ -26,7 +28,10 @@
 
     </div>
 </div>
+{% else %}
 
+
+{% endif %}
 <!--<input type="file" capture = "camera" accept="image/*,application/pdf">-->
 
 

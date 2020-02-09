@@ -10,6 +10,7 @@ from .models import UserProfile
 from todo.models import Todo
 from product.models import Product
 from django.contrib.auth.decorators import login_required
+from copy import deepcopy
 # Create your views here.
 context = {}
 
@@ -31,6 +32,7 @@ def about(req):
     if(profile):
         if(profile[0].profileImage):
             context['profileImage'] = profile[0].profileImage
+        context['profile'] = profile[0]
     return render(req,"about.html",context)
 
 def registerUser(req):
@@ -115,11 +117,18 @@ def saveProfile(req):
 
     user = User.objects.get(username = req.user.username)
     form = ProfileForm(req.POST)
+    profile = UserProfile.objects.get(user=user)
     if(form.is_valid()):
-        user.first_name = form.cleaned_data.get("firstname")
-        user.last_name = form.cleaned_data.get("lastname")
-        user.email = form.cleaned_data.get("email")
+        user.first_name = form.cleaned_data.get("firstName")
+        user.last_name = form.cleaned_data.get("lastName")
+
+        profile.firstName = form.cleaned_data.get("firstName")
+        profile.lastName = form.cleaned_data.get("lastName")
+        profile.phone = form.cleaned_data.get("phone")
+        profile.address = form.cleaned_data.get("address")
+
         user.save()
+        profile.save()
         messages.success(req,lang2['profileUpdated'])
         return HttpResponseRedirect("/users/about/")
     else:
@@ -244,5 +253,34 @@ def profile(req,id):
         if(profile[0].profileImage):
             context['profileImage'] = profile[0].profileImage
     return render(req,'profile.html',context)
+
+
+def buyProduct(req,id):
+    from .userLang import lang2
+    product = Product.objects.filter(id = id)
+    profile = UserProfile.objects.filter(user = req.user)
+    form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":product[0].productAmount})
+    check(req)
+    global context
+    context['form'] = form
+    context['product'] = product[0]
+    if(req.method == "POST"):
+        form = buyProductForm(req.POST)
+        if(form.is_valid()):
+            productt = deepcopy(product[0])
+            productt.productAmount = req.POST.get("productAmount")
+            # print("PRODUCT AMOUNT : ",product2.productAmount)
+            # print("PRODUCT AMOUNT : ",product[0].productAmount)
+            print("PRODUCT AMOUNT : ",productt.productAmount)
+            profile[0].currentOrders.add(productt)
+            print("PRODUCT AMOUNT : ",profile[0].currentOrders.all()[0].productAmount)
+            for i in profile[0].currentOrders.all():
+                print(i.productAmount)
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(req,lang2['formInvalid'])
+            return HttpResponseRedirect('/users/buyproduct/'+str(id)+"/")
+    else:
+        return render(req,"buyproduct.html",context)
 
 

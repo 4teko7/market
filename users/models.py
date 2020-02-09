@@ -6,6 +6,7 @@ from django.db import models
 from product.models import Product
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class UserProfile(models.Model):
@@ -15,10 +16,10 @@ class UserProfile(models.Model):
     # email = models.EmailField(max_length = 70,verbose_name = lang2['email'])
     # name = models.CharField(max_length = 30,verbose_name = lang2['firstname'])
     # surname = models.CharField(max_length = 30,verbose_name = lang2['lastname'])
-    fullName = models.CharField(max_length = 100,default = "", verbose_name = "Adınız/Name")
-    phone = models.IntegerField(default = 0,verbose_name = "Telefon Numarasi/Phone Number")
-    # address = models.PhoneField(blank=True, help_text='Telefon Numarası')
-    
+    firstName = models.CharField(blank = False,null = False,max_length = 100,default = "", verbose_name = "Adınız/Name")
+    lastName = models.CharField(blank = False,null = False,max_length = 100,default = "", verbose_name = "Soyadınız/Lastname")
+    phone = models.CharField(max_length = 11,verbose_name = "Telefon Numarasi/Phone Number")
+    address = models.TextField(blank = False,null = False, help_text='Adres')
     
     
     completedOrders = models.ManyToManyField(Product, blank = True,related_name = "Tamamlanan Siparisler/Completed Orders+")

@@ -9,6 +9,11 @@ class addProfileImageForm(forms.ModelForm):
         model = UserProfile
         fields = ["profileImage"]
 
+class buyProductForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ["firstName","lastName","phone","address"]
+
 
 class ChangeUsername(forms.Form):
     newUsername = forms.CharField(max_length = 30,label = "New Username")
@@ -20,10 +25,18 @@ class ChangePassword(forms.Form):
     newPasswordConfirm = forms.CharField(label = "New Password Confirm",widget = forms.PasswordInput)
 
     
-class ProfileForm(forms.Form):
-    firstname = forms.CharField(label = "Firstname")
-    lastname = forms.CharField(label = "Lastname")
-    email = forms.EmailField(label = "Email")
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ["firstName","lastName","phone","address"]
+
+
+
+
+    # firstname = forms.CharField(label = "Firstname")
+    # lastname = forms.CharField(label = "Lastname")
+    # email = forms.EmailField(label = "Email")
+    # phone = forms.
     #widget = forms.PasswordInput
 class loginForm(forms.Form):
     username = forms.CharField(label = "Username")

@@ -26,7 +26,7 @@ SECRET_KEY = ')!h^pv*2g@i57r9i-pb*#_h3rzi)twqi@z%(!wtpo9u4#xsb4!'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+PHONENUMBER_DB_FORMAT = 'E164'
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_cleanup',
     'ckeditor',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

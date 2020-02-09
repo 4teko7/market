@@ -71,7 +71,9 @@ tr = {
     'productTitle':'Ürün Adı',
     'noCurrentProduct': "Güncel Ürün Siparişiniz Yok",
     'completeTheOrder':"Siparişi Tamamla",
-
+    'address':"Adres",
+    'phoneNumber':"Telefon Numarası",
+    'amount':"Adet",
 
 
 # MESSAGES
@@ -178,8 +180,9 @@ en = {
     'productTitle':'Product Title',
     'noCurrentProduct': "Currently There is no any Order",
     'completeTheOrder':"Complete Order",
-
-
+    'address':"Address",
+    'phoneNumber':"Phone Number",
+    'amount':"Amount",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",

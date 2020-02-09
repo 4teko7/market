@@ -13,5 +13,5 @@ urlpatterns = [
     url("changeusername/",changeUsername,name = "changeusername"),
     url("profile/(?P<id>\d+)/",profile,name = "profile"),
     url("addprofileimage/",addProfileImage,name = "addprofileimage"),
-
+    url("buyproduct/(?P<id>\d+)/",buyProduct,name = "buyproduct"),
 ]

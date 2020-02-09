@@ -53,7 +53,7 @@ def addProduct(req):
             return HttpResponseRedirect("/products/myproducts/")
         else:
 
-            return render(req,"addpPoduct.html",context)
+            return render(req,"addProduct.html",context)
     else:
         return render(req,"addProduct.html",context)
 
@@ -184,12 +184,6 @@ def deleteProduct(req,id):
         return HttpResponseRedirect('/products/myproducts/')
 
 
-def buyProduct(req,id):
-    product = Product.objects.filter(id = id)
-    check(req)
-    global context
-    context['product'] = product
-    return render(req,"buyproduct.html",context)
 
 def searchProduct(req):
     global context

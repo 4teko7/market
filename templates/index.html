@@ -128,7 +128,7 @@
         <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">{{lang.orderedDate}}</th>
+                <th scope="col">{{lang.amount}}</th>
                 <th scope="col" style = "word-wrap: break-word;">{{lang.productTitle}}</th>
                 <th scope="col" style = "word-wrap: break-word;">{{lang.orderStatus}}</th>
               </tr>
@@ -139,7 +139,7 @@
                 {% if currentOrders %}
                      {% for currentOrder in currentOrders %}
                         <tr>
-                        <th scope="row">{{currentOrder.orderedDate}}</th>
+                        <th scope="row">{{currentOrder.productAmount}}</th>
                         <td><a href = "/products/productdetail/{{currentOrder.id}}/">{{currentOrder.title}}</a></td>
                         <td>{{currentOrder.orderStatus}}</td>
                         </tr>
@@ -199,8 +199,10 @@
 
 <div class="jumbotron" id = "bg">
     <h1>{{lang.pleaselogin}}</h1>
+</div><br><br>
+<div class="container" style = "text-align: center;">
+<a href = "/products/allproducts/"><scan style = "font-size:2rem;"><strong>{{lang.product}}</strong><br><img style = "width:10rem;height:10rem;"src={% static 'img/products.png' %}></scan></a>
 </div>
-
 {% endif %}
 
 

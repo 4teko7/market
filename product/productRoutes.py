@@ -11,6 +11,6 @@ urlpatterns = [
     url("editproduct/(?P<id>\d+)/",editProduct,name = "editproduct"),
     url("deleteproduct/(?P<id>\d+)/",deleteProduct,name = "deleteproduct"),
     url("searchproduct/",searchProduct,name = "searchproduct"),
-    url("buyproduct/(?P<id>\d+)/",buyProduct,name = "buyproduct"),
+
 
 ]

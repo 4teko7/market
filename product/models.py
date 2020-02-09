@@ -14,6 +14,7 @@ class Product(models.Model):
     createdDate = models.DateTimeField(auto_now_add = True,verbose_name = lang2['createdDate'])
     isPrivate = models.BooleanField(verbose_name = "Gizli/Private",default=False)
     productImage = models.ImageField(blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
+    productAmount = models.IntegerField(default = 1,verbose_name="Ürün Miktarı/Product Amount")
     productPrice = models.FloatField(blank = False,null = False,verbose_name = "Fiyat/Price")
     orderedDate = models.DateTimeField(default = '',verbose_name = lang2['orderedDate'])
     orderStatus = models.CharField(max_length = 100,default = "Sipariş Alındı.",verbose_name = lang2['orderStatus'])
