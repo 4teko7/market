@@ -274,11 +274,11 @@ def buyProduct(req,id):
             
            
             if(req.user.is_authenticated):
-                order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+                order = Order(title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
                 order.save()
                 profile[0].currentOrders.add(order)
             else:
-                order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
+                order = Order(title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
                 messages.warning(req,lang2['formInvalid'])
             # productt.productAmount = 20
@@ -333,6 +333,9 @@ def completed(req,id):
     from .userLang import lang2
     order = Order.objects.get(id = id)
     order.orderStatus = "Sipariş Tamamlandı..."
+    profile = UserProfile.objects.get(user = req.user)
+    profile.currentOrders.remove(order)
+    profile.completedOrders.add(order)
     order.save()
     return HttpResponseRedirect("/products/allorders/")
 
