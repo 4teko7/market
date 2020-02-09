@@ -7,12 +7,13 @@ from .productForms import *
 from .models import Product
 # from todo.models import Todo
 from comment.models import Comment
+from order.models import Order
 from comment.commentForms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from users.models import UserProfile
 import json
-
+import datetime
 contex = {}
 
 
@@ -195,3 +196,15 @@ def searchProduct(req):
         products = Product.objects.filter(title__contains = keywords)
         context['products'] = products
     return render(req,'allproducts.html',context)
+
+
+@login_required(login_url="/users/login/")
+def allOrders(req):
+    if(not req.user.is_superuser):
+        return HttpResponseRedirect('/')
+    orders = Order.objects.all()
+    check(req)
+    global context
+    context['orders'] = orders
+    context['date'] = datetime.datetime.now()
+    return render(req,"allorders.html",context)

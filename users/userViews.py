@@ -161,7 +161,7 @@ def addProfileImage(req):
                             profile[0].save()
             # Product.author = req.user
 
-            messages.success(req,lang2['productAdded'])
+            messages.success(req,lang2['articleAdded'])
             return HttpResponseRedirect("/users/about/")
         else:
 
@@ -244,7 +244,7 @@ def changeUsername(req):
     else:
         return render(req,"changeusername.html",context)
 
-
+@login_required(login_url="/users/login/")
 def profile(req,id):
     check(req)
     user = User.objects.get(id = id)
@@ -259,8 +259,11 @@ def profile(req,id):
 def buyProduct(req,id):
     from .userLang import lang2
     product = Product.objects.filter(id = id)
-    profile = UserProfile.objects.filter(user = req.user)
-    form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":1})
+    
+    if(req.user.is_authenticated):
+        profile = UserProfile.objects.filter(user = req.user)
+        form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":1})
+    else:form = buyProductForm()
     check(req)
     global context
     context['form'] = form
@@ -268,9 +271,16 @@ def buyProduct(req,id):
     if(req.method == "POST"):
         form = buyProductForm(req.POST)
         if(form.is_valid()):
-            order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
-            order.save()
-            profile[0].currentOrders.add(order)
+            
+           
+            if(req.user.is_authenticated):
+                order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+                order.save()
+                profile[0].currentOrders.add(order)
+            else:
+                order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
+                order.save()
+                messages.warning(req,lang2['formInvalid'])
             # productt.productAmount = 20
 
             # productt.productAmount = req.POST.get("productAmount")

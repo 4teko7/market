@@ -10,17 +10,18 @@
 }
     
 </style><br>
-{% if request.user.is_authenticated %}
-<div class="container col-md-8 col-lg-6 col-xs-8">
+<div class="row">
+<div class="container col-md-12 col-lg-12 col-xs-12">
     <div class="container" style = "text-align:center;">
-    <div class="row">
-
-        <h1>{{lang.addArticle}}</h1>
+    
+        <div class="alert alert-success" style = "text-align:center; "><h1 >{{lang.completeTheOrder}}</h1></div> 
+        
             <hr>
             <form action="/users/buyproduct/{{product.id}}/" method="POST">
                 {% csrf_token %}
+                <br>
                 {{form|crispy}}
-                <input type="number" name="productAmount" value="1" required="" class="numberinput form-control" id="id_productAmount"> 
+                <input type="number" name="productAmount" value="1" required="" class="numberinput form-control" id="id_productAmount"> <br>
                 <button type="submit" class="btn btn-danger">{{lang.completeTheOrder}}</button>
                 
             </form>
@@ -28,14 +29,11 @@
 
     </div>
 </div>
-{% else %}
 
-
-{% endif %}
 <!--<input type="file" capture = "camera" accept="image/*,application/pdf">-->
 
 
-
+<br><br><br><br><br>
 <br>
 <br>
 <script>

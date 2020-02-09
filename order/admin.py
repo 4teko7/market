@@ -8,7 +8,7 @@ from .models import Order
 # admin.site.register(Article)
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["id","title","productImage",'orderStatus',"productAmount","totalPrice","orderedDate"]
+    list_display = ['isFinished',"id","title","productImage",'orderStatus',"productAmount","totalPrice","orderedDate"]
     list_display_links = ["title","productImage"]
     search_fields = ["id","title",'orderStatus']
     list_filter = ["id","orderedDate","orderStatus"]

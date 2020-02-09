@@ -74,7 +74,7 @@ tr = {
     'address':"Adres",
     'phoneNumber':"Telefon Numarası",
     'amount':"Adet",
-
+    'allOrders':"Tüm Siparişler",
 
 # MESSAGES
     'noTodo':"Henüz Planınız Yok",
@@ -183,6 +183,8 @@ en = {
     'address':"Address",
     'phoneNumber':"Phone Number",
     'amount':"Amount",
+    'allOrders':"All Orders",
+    
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",
