@@ -75,6 +75,14 @@ tr = {
     'phoneNumber':"Telefon Numarası",
     'amount':"Adet",
     'allOrders':"Tüm Siparişler",
+    'orderReceived':"Sipariş Alındı.",
+    'preparing':"Hazırlanıyor.",
+    'shipped':"Yola Çıktı.",
+    'delivered':"Teslim Edildi.",
+    'completed':"Tamamlandı.",
+
+
+
 
 # MESSAGES
     'noTodo':"Henüz Planınız Yok",
@@ -184,7 +192,11 @@ en = {
     'phoneNumber':"Phone Number",
     'amount':"Amount",
     'allOrders':"All Orders",
-    
+    'orderReceived':"Order Received",
+    'preparing':"Preparing",
+    'shipped':"Shipped",
+    'delivered':"Delivered.",
+    'completed':"Completed",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",

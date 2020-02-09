@@ -301,3 +301,38 @@ def buyProduct(req,id):
         return render(req,"buyproduct.html",context)
 
 
+def preparing(req,id):
+    from .userLang import lang2
+    order = Order.objects.get(id = id)
+    order.orderStatus = "Hazırlanıyor..."
+    order.save()
+    return HttpResponseRedirect("/products/allorders/")
+
+def orderReceived(req,id):
+    from .userLang import lang2
+    order = Order.objects.get(id = id)
+    order.orderStatus = "Sipariş Alındı..."
+    order.save()
+    return HttpResponseRedirect("/products/allorders/")
+
+def shipped(req,id):
+    from .userLang import lang2
+    order = Order.objects.get(id = id)
+    order.orderStatus = "Sipariş Gönderildi..."
+    order.save()
+    return HttpResponseRedirect("/products/allorders/")
+
+def delivered(req,id):
+    from .userLang import lang2
+    order = Order.objects.get(id = id)
+    order.orderStatus = "Sipariş Teslim Edildi..."
+    order.save()
+    return HttpResponseRedirect("/products/allorders/")
+
+def completed(req,id):
+    from .userLang import lang2
+    order = Order.objects.get(id = id)
+    order.orderStatus = "Sipariş Tamamlandı..."
+    order.save()
+    return HttpResponseRedirect("/products/allorders/")
+

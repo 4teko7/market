@@ -14,4 +14,9 @@ urlpatterns = [
     url("profile/(?P<id>\d+)/",profile,name = "profile"),
     url("addprofileimage/",addProfileImage,name = "addprofileimage"),
     url("buyproduct/(?P<id>\d+)/",buyProduct,name = "buyproduct"),
+    url("orderreceived/(?P<id>\d+)/",orderReceived,name = "orderreceived"),
+    url("preparing/(?P<id>\d+)/",preparing,name = "preparing"),
+    url("shipped/(?P<id>\d+)/",shipped,name = "shipped"),
+    url("delivered/(?P<id>\d+)/",delivered,name = "delivered"),
+    url("completed/(?P<id>\d+)/",completed,name = "completed"),
 ]

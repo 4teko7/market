@@ -4,7 +4,7 @@
 {% block body %}
 
 <style>
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 800px) {
         #smallScreen {
           display: block;
         }
@@ -12,7 +12,7 @@
             display: none;
           }
       }
-      @media only screen and (min-width: 600px) {
+      @media only screen and (min-width: 800px) {
         #smallScreen {
             display: none;
           }
@@ -29,6 +29,7 @@
     background-color: powderblue;
 
     }
+
     </style>
 
 
@@ -140,52 +141,64 @@
             
 
 
-                <form action="/todos/completetodo/" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value={{todo.id}}>
-                    {% if not todo.iscompleted %}
-                    <button type="submit" class="btn btn-success pull-right"
-                        style="color:white; margin-top:1rem; font-size:0.7rem; font-weight:bolder; width:5rem;">{{lang.complete}}</button>
-                    {% else %}
 
+                <div id="largeScreen" style = "text-align: center;">
+                    <table style = " margin:auto auto;">
+                        <thead>
+                            <tr>
+                                <th><a href = "/users/orderreceived/{{order.id}}/"><button  class="btn btn-success pull-right"
+                                    style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:10rem;">{{lang.orderReceived}}</button></a></th>
+                                    <th><a href = "/users/preparing/{{order.id}}/"><button  class="btn btn-success pull-right"
+                                    style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:8rem;">{{lang.preparing}}</button></a></th>
+                                    <th><a href = "/users/shipped/{{order.id}}/"><button  class="btn btn-success pull-right"
+                                    style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:8rem;">{{lang.shipped}}</button></a></th>
+                                    <th><a href = "/users/delivered/{{order.id}}/"><button  class="btn btn-success pull-right"
+                                    style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:8rem;">{{lang.delivered}}</button></a></th>
+                                    <th><a href = "/users/completed/{{order.id}}/"><button  class="btn btn-success pull-right"
+                                    style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:8rem;">{{lang.completed}}</button></a></th>
+                            </tr>
 
-                    <button type="submit" class="btn btn-warning pull-right"
-                        style="color:white; margin-top:1rem; font-size:0.7rem; font-weight:bolder; width:5rem;">{{lang.undo}}</button>
+                        </thead>
 
-
-                    {% endif %}
-                </form>
-                {% if todo.iscompleted %}
-
-                <form action="/todos/deletetodo/{{todo.id}}/" method="POST">
-                        {% csrf_token %}
-                    <button type="submit" class="btn btn-danger pull-right"
-                        style="color:white; margin-top:1rem; margin-right:0.3rem;font-size:0.7rem; font-weight:bolder; width:5rem;">{{lang.delete}}</button>
-                </form>
-                {% endif %}
-                <button type="submit"  onclick = "editTodo('{{todo.id}}','{{todo.content}}','{{todo.date}}')" class="btn btn-info pull-right"
-                        style="color:white; margin-top:1rem; margin-right:0.3rem;font-size:0.7rem; font-weight:bolder; width:5rem; ">{{lang.edit}}</button>
-                        <br><br>
-                        <div class="col " id = "editTodoForm{{todo.id}}" style = "display:none;  text-align:center; z-index:10px; margin: auto auto;">
-
-                            <h1>{{lang.addTodo}}</h1>
-                                <hr>
-
-                                <form action="/todos/edittodo/{{todo.id}}/" method="POST">
-                                    {% csrf_token %}
-
-                                    {{form|crispy}}
-                                    <button type="submit" class="btn btn-danger">{{lang.save}}</button>
-                                </form>
+                    </table>
+                </div>
 
 
 
-                            </div>
+
+
+                <div id="smallScreen"  >
+                        <table style = "text-align: center; margin:auto auto;">
+                            <thead>
+                                <tr>
+                                    <th><a href = "/users/orderreceived/{{order.id}}/"><button type="submit" class="btn btn-success"
+                                        style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:9.4rem;">{{lang.orderReceived}}</button></a></th>
+                                    <th><a href = "/users/preparing/{{order.id}}/"><button type="submit" class="btn btn-success"
+                                        style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem;">{{lang.preparing}}</button></a></th>
+                                    
+                                    <th><a href = "/users/shipped/{{order.id}}/"><button type="submit" class="btn btn-success"
+                                        style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem;">{{lang.shipped}}</button></th></a>
+                                    </tr>
+                                    <tr style = "position:absolute; margin-left:3.5rem; ">
+                                    <th style = "margin-left:1rem; "><a href = "/users/delivered/{{order.id}}/"><button type="submit" class="btn btn-success"
+                                        style="  color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem;">{{lang.delivered}}</button></th></a>
+                                    <th><a href = "/users/completed/{{order.id}}/"><button type="submit" class="btn btn-success"
+                                        style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6.5rem;">{{lang.completed}}</button></th></a>
+                                </tr>
+                            
+                            </thead>
+    
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    
+                    
 
             </div>
 
         </div>
-
+        <br>
         <hr style="background-color: red;">
 
 
@@ -198,24 +211,9 @@
 
     </div>
 </div>
-<script  language="JavaScript">
-        function editTodo(id,content,date){
-            editTodoForm = document.getElementById("editTodoForm" +id);
 
-
-
-            if(editTodoForm.style.display !== "none"){
-                editTodoForm.style.display = "none";
-
-
-            }else{
-                editTodoForm.style.display = "block"
-                formContent = document.getElementById("EditTodoTextAreaId" + id);
-                editTodoForm.children[2][1].value = content;
-            }
-        }
-
-
-
-</script>
+<br>
+<br>
+<br>
+<br>
 {% endblock body %}
