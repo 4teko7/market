@@ -50,6 +50,7 @@ def addCommentComment(req,id):
     from .commentLang import lang2
     form = CommentForm(req.POST)
     productId = req.POST.get("productId")
+    print("PRoduct ID : ",productId)
     user = User.objects.get(username = req.user.username)
     profile = UserProfile.objects.filter(user = user)
 
@@ -73,6 +74,7 @@ def addCommentComment(req,id):
         # print("SUPER COMMENT : ",superComment.comments2)
         superComment.save()
         messages.success(req,lang2['commentAdded'])
+        
         return HttpResponseRedirect("/products/productdetail/" + productId + "/")
     else:
         messages.info(req,lang2['Comment is not Added'])

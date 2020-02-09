@@ -64,6 +64,15 @@ tr = {
     "edit":"Düzenle",
     "wait":"Lütfen Bekleyiniz Dosyanız Yükleniyor...",
     'product':"Ürünler",
+    'currentOrders':"Şimdiki Siparişler",
+    'completedOrders':"Tamamlanan Siparişler",
+    'orderedDate':"Sipariş Zamanı",
+    'orderStatus':'Sipariş Durumu',
+    'productTitle':'Ürün Adı',
+    'noCurrentProduct': "Güncel Ürün Siparişiniz Yok",
+    'completeTheOrder':"Siparişi Tamamla",
+
+
 
 # MESSAGES
     'noTodo':"Henüz Planınız Yok",
@@ -89,7 +98,7 @@ tr = {
     'fullname':'Isminizi Giriniz.',
     'cantedit':'Sizin Olmayan Makaleyi Düzenleyemezsiniz !',
     "noUser":"Kullanıcı Bulunamadı.",
-
+    'searchProduct':"Ürün Ara",
 
 }
 
@@ -161,9 +170,14 @@ en = {
     "edit":"Edit",
     "wait":"Please Wait...",
     'product':"Products",
-
-
-
+    'currentOrders':"Current Orders",
+    'completedOrders':"Completed Orders",
+    'orderedDate':"Ordered Date",
+    'searchProduct':"Search Product",
+    'orderStatus':'Order Status',
+    'productTitle':'Product Title',
+    'noCurrentProduct': "Currently There is no any Order",
+    'completeTheOrder':"Complete Order",
 
 
 

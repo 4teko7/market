@@ -58,27 +58,26 @@ def mainPage(req):
 
     check(req)
     if(req.user.is_authenticated):
-
         profile = UserProfile.objects.filter(user = req.user)
+        print(profile[0].user)
+        currentOrders = ""
+        completedOrders = ""
         if(profile):
+            currentOrders = profile[0].currentOrders
+            completedOrders = profile[0].completedOrders
             if(profile[0].profileImage):
                 context['profileImage'] = profile[0].profileImage
     context['date'] = datetime.datetime.now()
     context['lang'] = lang
+    context['currentOrders'] = currentOrders.all()
+    context['completedOrders'] = completedOrders.all()
+    print("Current Orders @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@: ",currentOrders.all())
+
     return render(req,"index.html",context)
 
 
 
-def searchProduct(req):
-    global context
-    global lang
-    check(req)
-    context['lang'] = lang
-    keywords = req.GET.get('keywords')
-    if(keywords):
-        products = Product.objects.filter(title__contains = keywords)
-        context['products'] = products
-    return render(req,'allproducts.html',context)
+
 
 def searchUser(req):
     global context
@@ -113,7 +112,6 @@ urlpatterns = [
     url('users/', include("users.userRoutes")),
     url("products/",include("product.productRoutes")),
     url("todos/",include("todo.todoRoutes")),
-    url('searchProduct/',searchProduct,name = 'searchProduct'),
     url('searchUser/',searchUser,name = "searchUser"),
     url('comments/',include('comment.commentRoutes')),
     url('language/',language,name = "language"),

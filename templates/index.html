@@ -4,8 +4,22 @@
 
 
     <style>
-
-
+        @media only screen and (max-width: 600px) {
+            #smallScreen {
+              display: block;
+            }
+            #largeScreen {
+                display: none;
+              }
+          }
+          @media only screen and (min-width: 600px) {
+            #smallScreen {
+                display: none;
+              }
+              #largeScreen {
+                  display: block;
+                }
+          }
 
         #bg {
           /* The image used */
@@ -27,58 +41,112 @@
                         </div>
         </h2>
         <hr>
-    <br>
     <div class="row">
-        <div class="col-md-6 col-lg-4 col-xs-12">
-        <a href = "/users/editprofile/"><scan style = "font-size:1.5rem;">{{lang.editProfile}}<br><img style = "width:6rem;height:6rem;"src={% static 'img/editProfile.png' %}></scan></a>
-        <br><br>
-        <a href = "/users/changepassword/"><scan style = "font-size:1.5rem;">{{lang.changePassword}}<br><img style = "width:6rem;height:6rem;"src={% static 'img/password.png' %}></scan></a>
-        <br><br>
-        <a href = "/users/changeusername/"><scan style = "font-size:1.5rem;">{{lang.changeUsername}}<br><img style = "width:8rem;height:8rem;"src={% static 'img/username.png' %}></scan></a>
-        <br><br>
-        <a href = "/users/addprofileimage/"><scan style = "font-size:1.4rem;">{{lang.changeProfilFoto}}<br><img style = "width:6rem;height:6rem;"src={% static 'img/profileFoto.png' %}></scan></a>
-        <br><br>
-        <a href = "/products/products/"><scan style = "font-size:1.4rem;">{{lang.product}}<br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
-        <!-- <br><hr style = "background-color: red; width:100%; height:0.1rem; border-radius:50%;"><br> -->
-        <br><br><br>
+        <div class="col-md-12 col-lg-12 col-xs-12" >
+            
+            
+            <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
+           
+            
+            <div class="col-md-12 col-lg-12 col-xs-12" id = "smallScreen">
+
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style = "word-wrap: break-word;">{{lang.editProfile}}</th>
+                    <th scope="col" style = "word-wrap: break-word;">{{lang.changePassword}}</th>
+                    
+                  </tr>
+                </thead>
+
+                <tbody>
+                    <hr>
+                    <tr>
+                        
+                        <td> <a href = "/users/editprofile/"><img style = "width:6rem;height:6rem;"src={% static 'img/editProfile.png' %}></a></td>
+                        <td>  <a href = "/users/changepassword/"><img style = "width:6rem;height:6rem;"src={% static 'img/password.png' %}></a></td>
+                    </tr>
+
+
+                    <thead>
+                        <tr>
+                            <th scope="col" style = "word-wrap: break-word;">{{lang.changeUsername}}</th>
+                            <th scope="col" style = "word-wrap: break-word;">{{lang.changeProfilFoto}}</th>
+                          
+                        </tr>
+                      </thead>
+
+                    <tr>
+
+
+                        <td><a href = "/users/changeusername/"><img style = "width:8rem;height:8rem;"src={% static 'img/username.png' %}></a></td>
+                        <td><a href = "/users/addprofileimage/"><img style = "width:6rem;height:6rem;"src={% static 'img/profileFoto.png' %}></a></td>
+                    
+                        </tr>
+                    
+                    </tbody>
+                    </table>
+                </div>
+                    <div  class="col-md-12 col-lg-12 col-xs-12" id = "largeScreen">
+
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col" style = "word-wrap: break-word;">{{lang.editProfile}}</th>
+                                <th scope="col" style = "word-wrap: break-word;">{{lang.changePassword}}</th>
+                                <th scope="col" style = "word-wrap: break-word;">{{lang.changeUsername}}</th>
+                                <th scope="col" style = "word-wrap: break-word;">{{lang.changeProfilFoto}}</th>
+                              </tr>
+                            </thead>
+            
+                            <tbody>
+                                <hr>
+                                    <tr>
+                                        
+                                        <td> <a href = "/users/editprofile/"><img style = "width:6rem;height:6rem;"src={% static 'img/editProfile.png' %}></a></td>
+                                        <td>  <a href = "/users/changepassword/"><img style = "width:6rem;height:6rem;"src={% static 'img/password.png' %}></a></td>
+                                        <td><a href = "/users/changeusername/"><img style = "width:8rem;height:8rem;"src={% static 'img/username.png' %}></a></td>
+                                        <td><a href = "/users/addprofileimage/"><img style = "width:6rem;height:6rem;"src={% static 'img/profileFoto.png' %}></a></td>
+                                    
+                                        </tr>
+            
+            
+                                </tbody>
+            
+                                </table>
+                </div>
+
     </div>
-
-    <div class="col-md-6 col-lg-4 col-xs-12"  style = "margin : auto auto;">
+       
+        <!-- <br><hr style = "background-color: red; width:100%; height:0.1rem; border-radius:50%;"><br> -->
+        
+    <div class="col-md-6 col-lg-6 col-xs-12"  style = "margin : auto auto;">
         <!-- RECENT comingTodos  -->
-
-        <h3>{{lang.comingTodos}}</h3>
+   <hr>
+        <br><br>
+        <h3>{{lang.currentOrders}}</h3>
         <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">{{lang.date}}</th>
-                <th scope="col" style = "word-wrap: break-word;">{{lang.content}}</th>
-                <th scope="col" style = "word-wrap: break-word;">{{lang.todoStatus}}</th>
+                <th scope="col">{{lang.orderedDate}}</th>
+                <th scope="col" style = "word-wrap: break-word;">{{lang.productTitle}}</th>
+                <th scope="col" style = "word-wrap: break-word;">{{lang.orderStatus}}</th>
               </tr>
             </thead>
             <tbody>
                 <hr>
 
-                {% if todos %}
-                     {% for todo in todos %}
+                {% if currentOrders %}
+                     {% for currentOrder in currentOrders %}
                         <tr>
-                        <th scope="row">{{todo.date}}</th>
-                        <td><a href = "/todos/mytodos/">{{todo.content}}</a></td>
-                        <td>
-                        {% if todo.iscompleted %}
-
-                        <img  style="width:3rem; height:3rem; ;" src={% static 'img/icon-yes.svg' %}>
-                        {% else %}
-
-                        <img  style="width:3rem; height:3rem;;" src={% static 'img/icon-no.svg' %}>
-
-                        {% endif %}
-                    </td>
-
+                        <th scope="row">{{currentOrder.orderedDate}}</th>
+                        <td><a href = "/products/productdetail/{{currentOrder.id}}/">{{currentOrder.title}}</a></td>
+                        <td>{{currentOrder.orderStatus}}</td>
                         </tr>
                     {% endfor %}
             {% else %}
                     <div class="alert alert-warning">
-                        {{lang.noTodo}}
+                        {{lang.noCurrentProduct}}
                     </div>
             {% endif %}
 
@@ -90,7 +158,7 @@
     </div>
     <div class="col-md-6 col-lg-4 col-xs-12"  style = "margin : auto auto;">
         <!-- RECENT ARTICLES   -->
-        <h3>{{lang.recentArticles}}</h3>
+        <h3>{{lang.completedOrders}}</h3>
         <table class="table table-bordered">
             <thead>
               <tr>

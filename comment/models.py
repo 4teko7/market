@@ -13,11 +13,11 @@ class Comment(models.Model):
 
     id = models.AutoField(primary_key=True)
     author = models.ForeignKey("auth.User",on_delete = models.CASCADE,verbose_name = "Yazar")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,verbose_name = "Urunler/Product")
     content = models.TextField(max_length = 4000,verbose_name = "Yorum Ekle")
     createdDate = models.DateTimeField(auto_now_add = True,verbose_name = "Oluşturulma Tarihi")
     userImage = models.ImageField(blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
     
     comments2 = models.TextField(max_length = 4000,blank = True,null = True,verbose_name = "Yorum Ekle")
     def __str__(self):
-        return "Id: {} - Author: {} - Product : {} - Created Date: {} - Content : {}".format(self.id,self.author,self.product,self.createdDate,self.content)
+        return "Id: {} - Author: {} - Created Date: {} - Content : {}".format(self.id,self.author,self.createdDate,self.content)

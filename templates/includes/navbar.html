@@ -41,10 +41,10 @@
         </a>
       </li>
   <li class="nav-item">
-    <a class="nav-link" href="/users/about/">
-      <i style= "" class="fa fas fa-user">
-      </i>
-      {{lang.product}}
+    <a class="nav-link" href="/products/allproducts/">
+      <img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>
+     
+     <strong class = "nav-item active" > {{lang.product}}</strong>
     </a>
   </li>    
 
@@ -53,7 +53,7 @@
 {% else %}
 
 <li class="nav-item">
-  <a class="nav-link" href="/users/about/">
+  <a class="nav-link" href="/products/allproducts/">
     <i style= "" class="fa fas fa-user">
     </i>
     {{lang.product}}
@@ -83,8 +83,8 @@
   {% endif %}
   
 </ul>
-    <form action = '/searchArticle/' class="form-inline my-2 my-lg-0" style = "margin-right:0.5rem;">
-      <input class="form-control mr-sm-2" name = "keywords" style = "width:8rem;" type="text" placeholder="{{lang.searchArticle}}" aria-label="Search">
+    <form action = '/products/searchproduct/' class="form-inline my-2 my-lg-0" style = "margin-right:0.5rem;">
+      <input class="form-control mr-sm-2" name = "keywords" style = "width:13rem;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{lang.search}}</button>
     </form>
   </div>

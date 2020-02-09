@@ -8,10 +8,10 @@ from .models import Comment
 # admin.site.register(Article)
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ["id","author","product","createdDate","comments2"]
-    list_display_links = ["id","author","product"]
-    search_fields = ["id","author","product"]
-    list_filter = ["id","createdDate","author","product"]
+    list_display = ["id","author","createdDate","comments2"]
+    list_display_links = ["id","author"]
+    search_fields = ["id","author"]
+    list_filter = ["id","createdDate","author"]
     
     class Meta:
         model = Comment

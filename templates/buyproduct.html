@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<style>
+#id_articleImage{
+
+
+    background-color: cornflowerblue;
+    height:3rem;
+}
+
+</style><br>
+<div class="container col-md-8 col-lg-6 col-xs-8">
+    <div class="container" style = "text-align:center;">
+    <div class="row">
+
+        <h1>{{lang.addArticle}}</h1>
+            <hr>
+            <form action="/users/order/{{product.id}}" method="POST">
+                {% csrf_token %}
+                
+                <button type="submit" class="btn btn-danger">{{lang.completeTheOrder}}</button>
+                
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!--<input type="file" capture = "camera" accept="image/*,application/pdf">-->
+
+
+
+<br>
+<br>
+<script>
+</script>
+{% endblock body %}
+

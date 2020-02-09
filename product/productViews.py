@@ -66,18 +66,24 @@ def myProducts(req):
     context['products'] = products
     return render(req,"myproducts.html",context)
 
+
+
+
+
 def productDetail(req,id):
     parsed = []
     global context
     commentForm = CommentForm()
     check(req)
     product = Product.objects.filter(id = id)
-    productAuthor = User.objects.get(username = product[0].author)
+    print(product[0])
     if(not product):
         return render(req,"warnings/pagenotfound.html",context)
-    comments = Comment.objects.filter(product = product)
-    comments = comments.order_by('createdDate')
-    comments = comments[::-1]
+    
+    comments = Comment.objects.filter(product = product[0])
+    if(comments):
+        comments = comments.order_by('createdDate')
+        comments = comments[::-1]
     context['product'] = product[0]
     context['commentForm'] = commentForm
 
@@ -95,7 +101,7 @@ def productDetail(req,id):
                         com["userImage"] = profile[0].profileImage.url
                     else:
                         com["userImage"] = None
-                    comment.comments2 = parsed
+                comment.comments2 = parsed
         user = User.objects.get(username = comment.author)
         profile = UserProfile.objects.filter(user = user)
         if(profile):
@@ -105,16 +111,12 @@ def productDetail(req,id):
                 comment.userImage = None
 
 
-
-    context['productAuthor'] = productAuthor
+    
     context['comments'] = comments
     if(product[0].productImage):
         context["image"] = product[0].productImage.url
     if(product[0].isPrivate):
-        if(product[0].author == req.user):
-            return render(req,"productdetail.html",context)
-        else:
-            return render(req,"warnings/productprivate.html",context)
+        return render(req,"warnings/productprivate.html",context)
     else:
         return render(req,"productdetail.html",context)
 
@@ -182,5 +184,20 @@ def deleteProduct(req,id):
         return HttpResponseRedirect('/products/myproducts/')
 
 
+def buyProduct(req,id):
+    product = Product.objects.filter(id = id)
+    check(req)
+    global context
+    context['product'] = product
+    return render(req,"buyproduct.html",context)
 
-
+def searchProduct(req):
+    global context
+    from .productLang import lang2
+    check(req)
+    context['lang'] = lang2
+    keywords = req.GET.get('keywords')
+    if(keywords):
+        products = Product.objects.filter(title__contains = keywords)
+        context['products'] = products
+    return render(req,'allproducts.html',context)

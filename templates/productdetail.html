@@ -33,32 +33,32 @@ hr{
             <button type = "button" onclick="history.back()" class="btn btn-primary">{{lang.goBack}}</button>
 
         </div>
-          <h1 class="mt-4">{{article.title}}</h1>
+          <h1 class="mt-4">{{product.title}}</h1>
 
           <!-- Author -->
 
           <p class="lead">
             {{lang.by}}
 
-            <a href="#">{{article.author}}</a>
+            <a href="#">Market</a>
 
           </p>
 
           <hr>
 
           <!-- Date/Time -->
-          <p>Posted on {{article.createdDate}}</p>
+          <p>Posted on {{product.createdDate}}</p>
 
           <hr>
 
           <!-- Preview Image -->
-         {% if article.articleImage %}
-          <img class="img-fluid rounded" style = "width:100%;"src="{{article.articleImage.url}}" alt="My Image">
+         {% if product.productImage %}
+          <img class="img-fluid rounded" style = "width:100%;"src="{{product.productImage.url}}" alt="My Image">
 
           <hr>
           {% endif %}
           <!-- Post Content -->
-          <p class="lead">{{article.content|safe}}</p>
+          <p class="lead">{{product.content|safe}}</p>
           <hr >
 
           <!-- ADD COMMENT  -->
@@ -69,7 +69,7 @@ hr{
                 <h1>{{lang.whatDoYouThink}}</h1>
                     <hr>
                     {% if request.user.is_authenticated %}
-                    <form action="/comments/addcomment/{{article.id}}/" method="POST">
+                    <form action="/comments/addcomment/{{product.id}}/" method="POST">
                         {% csrf_token %}
 
 
@@ -111,7 +111,7 @@ hr{
                           <div id = "commentForm2{{comment.id}}">
                           {{comment.content}}
                         </div>
-
+                          
                           {% include "includes/replyComment2.html" %}
 
 
@@ -143,19 +143,6 @@ hr{
                         </div >
                       </div>
                       {% endfor %}
-
-
-
-
-
-
-
-                                        <!-- END OF COMMENT TO COMMENT -->
-
-
-
-
-
 
 
 
@@ -171,119 +158,6 @@ hr{
     <br><br>
 
 
-
-<div id = "style2" style = " display:none">
-<div class="container" style = "border-style:double; align-content: center; margin-top:2rem;">
-  <button id = "changePageStyle" class = "btn btn-primary pull-right" style = "margin-top:1rem;" onclick = "changePageStyle()">Change Page Style</button>
-
-    <div class="container" style = "margin-top: 0.5rem; margin-bottom: 10%; align-content: center">
-    <p style = "display:inline; margin-right:1rem;"><em>{{article.createdDate}}</em></p>
-
-        <br><br>
-
-            <div style = "font-weight: bold; word-wrap: break-word; text-align:center;">{{article.title}}</div>
-            <hr style = "height: 5px;background-color: red; margin-right:2rem">
-
-
-            {% if article.articleImage %}
-            <img class="img-fluid rounded" style = "width:100%;"src="{{article.articleImage.url}}" alt="My Image">
-
-            <hr>
-            {% endif %}
-
-
-            <div style = "word-wrap: break-word;">{{article.content|safe}}</div>
-
-            <hr style = "margin-right:2rem">
-
-
-    </div>
-    <div style="text-align: center; margin-top: 2rem; margin-bottom:2rem;" class = "pull-right">
-        <button type = "button" onclick="history.back()" class="btn btn-primary">{{lang.goBack}}</button>
-
-    </div>
-</div>
-<br><br><br><br>
-<br>
-                                    <!-- ADD COMMENT -->
-<div class="container">
-    <div class="row">
-
-        <div style = "text-align:center; " class="col align-self-center">
-        <h1>{{lang.whatDoYouThink}}</h1>
-            <hr>
-            {% if request.user.is_authenticated %}
-            <form action="/comments/addcomment/{{article.id}}/" method="POST">
-                {% csrf_token %}
-
-
-                {{commentForm|crispy}}
-                <button type="submit" class="btn btn-danger">{{lang.save}}</button>
-            </form>
-            {% else %}
-            <textarea type="text" rows="6" id="name" name = "name" class="form-control" placeholder = "{{lang.disabledComment}}"  required disabled></textarea>
-            <br>
-            <button type="submit" class="btn btn-danger">{{lang.save}}</button>
-            {% endif %}
-        </div>
-
-    </div>
-</div>
-                                    <!-- END OF ADD COMMENT -->
-
-          <div class="container" style = "margin-top:2rem;">
-          <p>COMMEN@Ts  :  {{comments}}</p>
-                     {% for comment in comments %}
-           {% comment %} <p>{{comment.userImage.url}}</p> {% endcomment %}
-                      <div class="media mb-4">
-                            {% if comment.userImage %}
-                            <img class="d-flex mr-3 rounded-circle" style = "width:3rem;height:3rem;" src="{{comment.userImage}}" alt="">
-                            {% else %}
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                            {% endif%}
-                        <div  class="media-body" style = " word-wrap: break-word;">
-                          <h5 class="mt-0">{{comment.author}}</h5>
-                          <a href = "#commentForm2{{comment.id}}"><button style = "font-size:0.8rem; display :inline;" name = "replyDiv2{{comment.id}}" class = "btn btn-danger pull-right" onclick = "reply(this.name)">Reply</button></a>
-
-                          <div id = "commentForm2{{comment.id}}">
-                          {{comment.content}}
-                        </div>
-
-                          {% include "includes/replyComment2.html" %}
-
-
-
-              {% for com in comment.comments2 %}
-                  {% if com.id == comment.id%}
-
-
-              <div class="media mt-4">
-              
-                      {% if com.userImage %}
-                      <img class="d-flex mr-3 rounded-circle" style = "width:3rem;height:3rem;" src="{{com.userImage}}" alt="">
-                      {% else %}
-                      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                      {% endif%}
-                <div class="media-body" style = " word-wrap: break-word;">
-                  <h5 class="mt-0">{{com.author}}</h5>
-                  {{com.content}}
-                </div>
-              </div>
-              {% endif %}
-
-              {% endfor %}
-
-                          <hr style = "background-color:red">
-
-
-
-                        </div >
-                      </div>
-                      {% endfor %}
-                    </div>
-<br><br>
-
-</div>
 
 
 <script src = "{% static 'js/jquery.js' %}"></script>
