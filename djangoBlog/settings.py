@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 import os
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_CHARSET = 'utf-8'
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'ckeditor',
     'phonenumber_field',
+    'order',
 ]
 
 MIDDLEWARE = [

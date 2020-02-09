@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from ckeditor.fields import RichTextField
 from django.db import models
 from product.models import Product
+from order.models import Order
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from phonenumber_field.modelfields import PhoneNumberField
@@ -22,8 +23,8 @@ class UserProfile(models.Model):
     address = models.TextField(blank = False,null = False, help_text='Adres')
     
     
-    completedOrders = models.ManyToManyField(Product, blank = True,related_name = "Tamamlanan Siparisler/Completed Orders+")
-    currentOrders = models.ManyToManyField(Product, blank = True,related_name = "Simdiki Siparisler/Current Orders+")
+    completedOrders = models.ManyToManyField(Order, blank = True,related_name = "Tamamlanan Siparisler/Completed Orders+")
+    currentOrders = models.ManyToManyField(Order, blank = True,related_name = "Simdiki Siparisler/Current Orders+")
     profileImage = models.ImageField(upload_to = 'profileimg',blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
     
     def __str__(self):

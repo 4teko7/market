@@ -7,10 +7,11 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 from .userForms import *
 from .models import UserProfile
+from order.models import Order
 from todo.models import Todo
 from product.models import Product
 from django.contrib.auth.decorators import login_required
-from copy import deepcopy
+import datetime
 # Create your views here.
 context = {}
 
@@ -259,7 +260,7 @@ def buyProduct(req,id):
     from .userLang import lang2
     product = Product.objects.filter(id = id)
     profile = UserProfile.objects.filter(user = req.user)
-    form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":product[0].productAmount})
+    form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":1})
     check(req)
     global context
     context['form'] = form
@@ -267,15 +268,21 @@ def buyProduct(req,id):
     if(req.method == "POST"):
         form = buyProductForm(req.POST)
         if(form.is_valid()):
-            productt = deepcopy(product[0])
-            productt.productAmount = req.POST.get("productAmount")
-            # print("PRODUCT AMOUNT : ",product2.productAmount)
+            order = Order(id = product[0].id,title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+            order.save()
+            profile[0].currentOrders.add(order)
+            # productt.productAmount = 20
+
+            # productt.productAmount = req.POST.get("productAmount")
+            # productt.title = "@@@@@@@@@@@@@@@@@@"
+            # print("PRODUCT AMOUNT : ",productt.productAmount)
             # print("PRODUCT AMOUNT : ",product[0].productAmount)
-            print("PRODUCT AMOUNT : ",productt.productAmount)
-            profile[0].currentOrders.add(productt)
-            print("PRODUCT AMOUNT : ",profile[0].currentOrders.all()[0].productAmount)
-            for i in profile[0].currentOrders.all():
-                print(i.productAmount)
+            # productt.save()
+            # print("PRODUCT AMOUNT : ",productt.productAmount)
+            # profile[0].currentOrders.add(productt)
+            # print("PRODUCT AMOUNT : ",profile[0].currentOrders.all()[0].productAmount)
+            # for i in profile[0].currentOrders.all():
+            #     print(i.productAmount)
             return HttpResponseRedirect('/')
         else:
             messages.warning(req,lang2['formInvalid'])

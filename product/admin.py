@@ -8,10 +8,10 @@ from .models import Product
 # admin.site.register(Article)
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["id","title","productPrice",'orderStatus',"orderedDate","isPrivate","productImage"]
-    list_display_links = ["title","orderedDate","productPrice"]
+    list_display = ["id","title","productPrice","isPrivate","productImage"]
+    list_display_links = ["title","productPrice"]
     search_fields = ["id","title",'productPrice']
-    list_filter = ["id","orderedDate"]
+    list_filter = ["id","productPrice"]
     
     class Meta:
         model = Product
