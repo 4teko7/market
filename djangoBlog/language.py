@@ -80,7 +80,7 @@ tr = {
     'shipped':"Yola Çıktı.",
     'delivered':"Teslim Edildi.",
     'completed':"Tamamlandı.",
-
+    'myProfile':"Profilim",
 
 
 
@@ -197,6 +197,7 @@ en = {
     'shipped':"Shipped",
     'delivered':"Delivered.",
     'completed':"Completed",
+    'myProfile':"My Profile",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",

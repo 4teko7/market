@@ -48,6 +48,11 @@
               <div class="col-md-6 col-lg-6 col-xs-6">
           <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
         </div>
+        {% if not user.is_superuser %} 
+        <div class="col-md-6 col-lg-6 col-xs-6">
+          <a href = "/users/about/"><scan style = "font-size:1.4rem;"><strong>{{lang.myProfile}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/about.png' %}></scan></a>
+        </div>
+        {% endif %}
         {% if user.is_superuser %} 
         <div class="col-md-6 col-lg-6 col-xs-6"><br>
           <a href = "/products/allorders/"><scan style = "font-size:1.4rem;"><strong>{{lang.allOrders}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/orders.png' %}></scan></a>
@@ -191,7 +196,6 @@
                    {% for completedOrder in completedOrders %}
                       <tr>
                       <th scope="row">{{completedOrder.productAmount}}</th>
-                      <h1>{{completedOrder.product.id}}</h1>
                       <td><a href = "/products/productdetail/{{completedOrder.product.id}}/">{{completedOrder.title}}</a></td>
                       <td>{{completedOrder.orderStatus}}</td>
                       </tr>
