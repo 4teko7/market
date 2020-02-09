@@ -274,7 +274,7 @@ def buyProduct(req,id):
             
            
             if(req.user.is_authenticated):
-                order = Order(product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+                order = Order(user = req.user,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
                 order.save()
                 profile[0].currentOrders.add(order)
             else:
@@ -333,9 +333,12 @@ def completed(req,id):
     from .userLang import lang2
     order = Order.objects.get(id = id)
     order.orderStatus = "Sipariş Tamamlandı..."
-    profile = UserProfile.objects.get(user = req.user)
-    profile.currentOrders.remove(order)
-    profile.completedOrders.add(order)
+    if(order.isGuest):
+        pass
+    else:
+        profile = UserProfile.objects.get(user = order.user)
+        profile.currentOrders.remove(order)
+        profile.completedOrders.add(order)
     order.save()
     return HttpResponseRedirect("/products/allorders/")
 
