@@ -274,11 +274,11 @@ def buyProduct(req,id):
             
            
             if(req.user.is_authenticated):
-                order = Order(title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+                order = Order(product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
                 order.save()
                 profile[0].currentOrders.add(order)
             else:
-                order = Order(title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
+                order = Order(product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
                 messages.warning(req,lang2['formInvalid'])
             # productt.productAmount = 20

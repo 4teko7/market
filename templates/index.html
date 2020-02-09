@@ -150,7 +150,7 @@
                      {% for currentOrder in currentOrders %}
                         <tr>
                         <th scope="row">{{currentOrder.productAmount}}</th>
-                        <td><a href = "/products/productdetail/{{currentOrder.id}}/">{{currentOrder.title}}</a></td>
+                        <td><a href = "/products/productdetail/{{currentOrder.product.id}}/">{{currentOrder.title}}</a></td>
                         <td>{{currentOrder.orderStatus}}</td>
                         </tr>
                     {% endfor %}
@@ -191,7 +191,8 @@
                    {% for completedOrder in completedOrders %}
                       <tr>
                       <th scope="row">{{completedOrder.productAmount}}</th>
-                      <td><a href = "/products/productdetail/{{currentOrder.id}}/">{{completedOrder.title}}</a></td>
+                      <h1>{{completedOrder.product.id}}</h1>
+                      <td><a href = "/products/productdetail/{{completedOrder.product.id}}/">{{completedOrder.title}}</a></td>
                       <td>{{completedOrder.orderStatus}}</td>
                       </tr>
                   {% endfor %}

@@ -77,7 +77,7 @@ def productDetail(req,id):
     commentForm = CommentForm()
     check(req)
     product = Product.objects.filter(id = id)
-    print(product[0])
+    
     if(not product):
         return render(req,"warnings/pagenotfound.html",context)
     

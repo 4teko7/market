@@ -7,7 +7,6 @@ from product.models import Product
 from order.models import Order
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class UserProfile(models.Model):
@@ -19,8 +18,8 @@ class UserProfile(models.Model):
     # surname = models.CharField(max_length = 30,verbose_name = lang2['lastname'])
     firstName = models.CharField(blank = False,null = False,max_length = 100,default = "", verbose_name = "Adınız/Name")
     lastName = models.CharField(blank = False,null = False,max_length = 100,default = "", verbose_name = "Soyadınız/Lastname")
-    phone = models.CharField(max_length = 11,verbose_name = "Telefon Numarasi/Phone Number")
-    address = models.TextField(blank = False,null = False, help_text='Adres')
+    phone = models.CharField(default = 0,max_length = 11,verbose_name = "Telefon Numarasi/Phone Number")
+    address = models.TextField(default = "",blank = False,null = False, help_text='Adres')
     
     
     completedOrders = models.ManyToManyField(Order, blank = True,related_name = "Tamamlanan Siparisler/Completed Orders+")

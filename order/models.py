@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 from ckeditor.fields import RichTextField
 from django.db import models
+from product.models import Product
 # Create your models here.
 
 class Order(models.Model):
     from .orderLang import lang2
     id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product,on_delete = models.CASCADE,verbose_name = "Ürün/Product")
     title = models.CharField(max_length = 100,verbose_name = lang2['title'])
     productImage = models.ImageField(blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
     productAmount = models.IntegerField(default = 1,verbose_name="Ürün Miktarı/Product Amount")
