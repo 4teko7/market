@@ -38,7 +38,7 @@ from django.conf.urls.static import static
 
 context = {}
 
-lang = en
+lang = tr
 
 
 def check(req):

@@ -81,6 +81,7 @@ tr = {
     'delivered':"Teslim Edildi.",
     'completed':"Tamamlandı.",
     'myProfile':"Profilim",
+    'options':"Seçenekler",
 
 
 
@@ -198,6 +199,7 @@ en = {
     'delivered':"Delivered.",
     'completed':"Completed",
     'myProfile':"My Profile",
+    'options':"Options",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",
@@ -232,10 +234,8 @@ en = {
 #     id = "mainPage"
 #     id = "myTodos"
 #     id = "myArticles"
-#     id = "about"
-#     id = "logout"
-#     id = "login"
-#     id = "register"
+#     id = "about"    'options':"Options",
+
 #     id = "confirm"
 #     id = "password"
 #     id = "addArticle"

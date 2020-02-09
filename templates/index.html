@@ -44,21 +44,45 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xs-12" >
             
-            <div class="row">
-              <div class="col-md-6 col-lg-6 col-xs-6">
+            
+              
+        {% if not user.is_superuser %} 
+        <div class="row">
+
+        <div class="col-md-6 col-lg-6 col-xs-12">
           <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
         </div>
-        {% if not user.is_superuser %} 
-        <div class="col-md-6 col-lg-6 col-xs-6">
+        
+        <div class="col-md-6 col-lg-6 col-xs-12"><br>
           <a href = "/users/about/"><scan style = "font-size:1.4rem;"><strong>{{lang.myProfile}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/about.png' %}></scan></a>
         </div>
+        
+        <div class="col-md-12 col-lg-12 col-sm-12 container" style = "margin : auto auto;">
+          <form action = '/products/searchproduct/' class="form-inline">
+            <div class="container" id = "smallScreen"><br>
+            <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search"><br>
+            <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
+          </div>
+          <div class="container" id = "largeScreen"><br>
+            <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
+            <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
+
+
         {% endif %}
         {% if user.is_superuser %} 
+        <div class="col-md-6 col-lg-6 col-xs-6">
+          <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
+        </div>
         <div class="col-md-6 col-lg-6 col-xs-6"><br>
           <a href = "/products/allorders/"><scan style = "font-size:1.4rem;"><strong>{{lang.allOrders}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/orders.png' %}></scan></a>
         </div>
         {% endif %}
-      </div>
+      
             
             <div class="col-md-12 col-lg-12 col-xs-12" id = "smallScreen">
 

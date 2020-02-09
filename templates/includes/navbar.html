@@ -1,98 +1,197 @@
 {% load static %}
 
+<style>
+  @media only screen and (max-width: 600px) {
+      #smallScreen {
+        display: block;
+      }
+      #largeScreen {
+          display: none;
+        }
+    }
+    @media only screen and (min-width: 600px) {
+      #smallScreen {
+          display: none;
+        }
+        #largeScreen {
+            display: block;
+          }
+    }
+
+  #bg {
+    /* The image used */
+
+    /* Full height */
+    height: 100%;
+  background-color: powderblue;
+
+  }
+  </style>
+
 
 <link rel="stylesheet" href="{% static 'css/navbar/navbar.css' %}">
 <!------ Include the above in your HEAD tag ---------->
+<div class="row"  style = "background-color: powderblue; padding-bottom:1rem;">
+<div class="container" style = "text-align: center;">
+  
+     <a href = "#"> <img onclick = "optionss()" style="color:white; margin-top:1rem; font-size:1rem; font-weight:bolder;" src="{% static 'img/options.png' %}" alt="Seçenekler"><br><strong>{{lang.options}}</strong></a>
 
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="col-xs-12 col-md-12 col-lg-12" id = "options" style ="display : none;"><br>
+
+    <div id="largeScreen">
+  <table style = "margin:auto auto;">
+    <thead>
+      <tr>
+        <th>
   <form action = "/language/" method = "GET">
     <input name = "currentPage" type="hidden" value = "{{ request.get_full_path }}">
-    <button  type = "submit" class="btn btn-info" style = "margin-right:0.5rem;">{{lang.language}}</button>
+    <button  type = "submit"  class="btn btn-info"
+          style="color:white; background-color:black;  margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;">{{lang.language}}</button>
   </form>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">
-          <i class="fa fa-home"></i>
-          {{lang.mainPage}}
-          <span class="sr-only">(current)</span>
-          </a>
-      </li>
+</th>
+
+      <th>    
+      <a href="/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-home"></i><br> {{lang.mainPage}}</button></a>
+        </th>
+
       {% if request.user.is_authenticated %}
-    
-
-      <li class="nav-item">
-        <a class="nav-link" href="/users/about/">
-          <i style= "" class="fa fas fa-user">
-          </i>
-          {{lang.about}}
-        </a>
-      </li>
-      
-  <li class="nav-item">
-        <a class="nav-link" href="/users/logout/">
-          <i class="fa fas fa-power-off">
-          </i>
-          {{lang.logout}}
-        </a>
-      </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/products/allproducts/">
-      <img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>
+      <th>  
+        <a href="/users/logout/"><button  class="btn btn-success pull-right"
+          style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fas fa-power-off"> </i>  {{lang.logout}}</button></a>
+      </th>
      
-     <strong class = "nav-item active" > {{lang.product}}</strong>
-    </a>
-  </li>    
+  
+      
+{% else %}
+<th> 
+  <a href="/products/allproducts/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:blue; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>  <strong class = "nav-item active" > {{lang.product}}</strong></button></a>
+</th>
+<th> 
 
+  <a href="/users/register/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:blueviolet; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" ><br> {{lang.register}}</strong></button></a>
+</th>
+<th> 
+
+  <a href="/users/login/"><button  class="btn btn-success pull-right"
+    style="color:white; margin-top:1rem; font-size:1rem; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" ><br> {{lang.login}}</strong></button></a>
+</th>   
+  {% endif %}
+    </ul>
+
+  
+  </tr>
+  </thead>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+<div id="smallScreen">
+  <table style = "margin:auto auto;">
+    <thead>
+      
+      <tr>
+     
+
+        <th style = "margin-left:10rem;">
+  <form action = "/language/" method = "GET">
+    <input name = "currentPage" type="hidden" value = "{{ request.get_full_path }}">
+    <button  type = "submit"  class="btn btn-info"
+          style="color:white; background-color:black;  margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;">{{lang.language}}</button>
+  </form>
+  
+</th>
+
+      <th>    
+      <a href="/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-home"></i> <br>{{lang.mainPage}}</button></a>
+        </th>
+      
+      </tr>
+    
+      <tr>
+
+      </thead>
+    </table>
+        <table style = "margin:auto auto;">
+          <thead>
+      {% if request.user.is_authenticated %}
+      
+      <th>  
+        <a href="/users/logout/"><button  class="btn btn-success pull-right"
+          style="color:white; background-color:darkcyan; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fas fa-power-off"> </i>  {{lang.logout}}</button></a>
+      </th>
+    
   
       
 {% else %}
 
-<li class="nav-item">
-  <a class="nav-link" href="/products/allproducts/">
-    <i style= "" class="fa fas fa-user">
-    </i>
-    {{lang.product}}
-  </a>
-</li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-envelope-o">
-          </i>
-          {{lang.loginregister}}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/users/register/">{{lang.register}}</a>
-          <a class="dropdown-item" href="/users/login/">{{lang.login}}</a>
-          <!-- <div class="dropdown-divider"></div> -->
-          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-        </div>
-      </li>
+<th> 
+  <a href="/products/allproducts/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:blue; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><img style = "width:2rem;height:2rem;"src={% static 'img/products.png' %}>  <strong class = "nav-item active" > {{lang.product}}</strong></button></a>
+</th>
+<th> 
+
+  <a href="/users/register/"><button  class="btn btn-success pull-right"
+    style="color:white; background-color:blueviolet; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.register}}</strong></button></a>
+</th>
+<th> 
+
+  <a href="/users/login/"><button  class="btn btn-success pull-right"
+    style="color:white; margin-top:1rem; font-size:1rem; margin-left : 1rem; margin-top:1rem; font-size:1rem; font-weight:bolder; width:6rem; height:5rem;"><i class="fa fa-envelope-o"></i> <strong class = "nav-item active" > <br>{{lang.login}}</strong></button></a>
+</th>   
+
   {% endif %}
-      
+</tr>
     </ul>
-<ul class="navbar-nav ">
-    {% if request.user.is_authenticated %}
-    
-     
-      
-  {% endif %}
+
   
-</ul>
-    <form action = '/products/searchproduct/' class="form-inline my-2 my-lg-0" style = "margin-right:0.5rem;">
-      <input class="form-control mr-sm-2" name = "keywords" style = "width:13rem;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{lang.search}}</button>
-    </form>
+  </tr>
+  </thead>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
   </div>
-</nav>
+  
+</div>
 
 
-<script>
-
-
-
+<script  language="JavaScript">
+  function optionss(){
+      options = document.getElementById("options");
+      if(options.style.display !== "none"){
+        options.style.display = "none";
+        console.log("Burada")
+      }else{
+        options.style.display = "block"
+        console.log("Burada2")
+      }
+  }
 </script>
