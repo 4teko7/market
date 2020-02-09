@@ -7,6 +7,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 from .userForms import *
 from .models import UserProfile
+from guests.models import GuestProfile
 from order.models import Order
 from todo.models import Todo
 from product.models import Product
@@ -289,8 +290,9 @@ def buyProduct(req,id):
                 order.save()
                 profile[0].currentOrders.add(order)
             else:
-                # profile = UserProfile(user = False,firstName = req.POST.firstName,lastName = req.POST.lastName,phone = req.POST.phone,address = req.POST.address)
-                order = Order(user = False,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
+                guest = GuestProfile(firstName = req.POST.get("firstName"),lastName = req.POST.get("lastName"),phone = req.POST.get("phone"),address = req.POST.get("address"))
+                guest.save()
+                order = Order(guestProfile = guest,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
                 messages.warning(req,lang2['formInvalid'])
 

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'order',
     'ingredient',
+    'guests',
 
 ]
 
