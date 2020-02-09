@@ -191,12 +191,16 @@ def searchProduct(req):
 
 @login_required(login_url="/users/login/")
 def allOrders(req):
+
+
     global context
     check(req)
 
     if(not req.user.is_superuser):
         return HttpResponseRedirect('/')
     orders = Order.objects.all()
+    orders = orders.order_by('orderedDate')
+    orders = list(filter(lambda x: not x.isFinished, orders))
     
     context['orders'] = orders
     context['date'] = datetime.datetime.now()

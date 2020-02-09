@@ -336,6 +336,7 @@ def completed(req,id):
     from .userLang import lang2
     order = Order.objects.get(id = id)
     order.orderStatus = "Sipariş Tamamlandı..."
+    order.isFinished = True
     if(order.isGuest):
         pass
     else:
