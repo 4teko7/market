@@ -15,7 +15,7 @@
               
 <table style = "border:0ch" class="table table-bordered">
   <thead style = "text-align: center;">
-    <th>URUN</th>
+    <th>{{lang.product}}</th>
   </thead>
   <tbody>
   {% if products %}
@@ -26,11 +26,11 @@
       <td  style = "text-align:center;"><a href = "/products/productdetail/{{product.id}}/">{{product.title}}<hr><img style = "width:13rem;height:13rem;" src={{product.productImage.url}} alt="Urun Resmi"></a>
         <hr>
         <div class="alert alert-primary" role="alert">
-          <strong>Fiyat :</strong> <em>{{product.productPrice}}</em>
+          <strong>{{lang.price}} :</strong> <em>{{product.productPrice}}</em>
         </div>
         <hr>
-        <a href = "/products/productdetail/{{product.id}}/"><button type="button" class="btn btn-primary">Icindekiler <i class="far fa-eye"></i></button></a>
-        <a href = "/users/buyproduct/{{product.id}}/"><button type="button" class="btn btn-danger">Satin Al  <img style = "width:1.5rem;height:1.5rem;" src="{% static 'img/buy.png'%}" alt=""></button></a>
+        <a href = "/products/productdetail/{{product.id}}/"><button type="button" class="btn btn-primary">{{lang.ingredients}} <i class="far fa-eye"></i></button></a>
+        <a href = "/users/buyproduct/{{product.id}}/"><button type="button" class="btn btn-danger">{{lang.buy}}  <img style = "width:1.5rem;height:1.5rem;" src="{% static 'img/buy.png'%}" alt=""></button></a>
       </td>
       
       

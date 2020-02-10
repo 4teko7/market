@@ -56,8 +56,15 @@
         {% for order in orders  %}
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xs-12">
-                <strong>{{lang.orderedDate}} : </strong> {{order.orderedDate}}
-
+                <strong>{{lang.orderedDate}} : </strong> {{order.orderedDate}}<br>
+                {% if order.guestProfile%}
+                <strong>{{lang.firstname}} : </strong> {{order.guestProfile.firstName}}<br>
+                <strong>{{lang.lastname}} : </strong> {{order.guestProfile.lastName}}<br>
+                <strong>{{lang.phone}} : </strong> {{order.guestProfile.phone}}<br>
+                <strong>{{lang.address}} : </strong> {{order.guestProfile.address}}
+                {% elif order.user %}
+                <strong>{{lang.firstname}} : </strong> <a href="/users/about/{{order.user.id}}/"> {{order.user.first_name}}</a>
+                {% endif %}
 
 
 
@@ -82,10 +89,10 @@
                     <table  class="table table-bordered" style = "text-align: center;">
                         <thead>
                             <tr>
-                            <th>Miktar</th>
-                            <th>Toplam Ücret</th>
-                            <th>Sipariş Durumu</th>
-                            <th>Kullanıcı Durumu</th>
+                            <th>{{lang.amount}}</th>
+                            <th>{{lang.fullPrice}}</th>
+                            <th>{{lang.orderStatus}}</th>
+                            <th>{{lang.statusOfUser}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -104,8 +111,8 @@
                     <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th>Miktar</th>
-                            <th>Toplam Ücret</th>
+                            <th>{{lang.amount}}</th>
+                            <th>{{lang.fullPrice}}</th>
                           </tr>
                         </thead>
         
@@ -120,8 +127,8 @@
         
                             <thead>
                                 <tr>
-                                    <th>Sipariş Durumu</th>
-                                    <th>Kullanıcı Durumu</th>
+                                    <th>{{order.orderStatus}}</th>
+                                    <th>{{lang.statusOfUser}}</th>
                                   
                                 </tr>
                               </thead>

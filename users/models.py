@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 # Create your models here.
 
+
+
 class UserProfile(models.Model):
     from .userLang import lang2
     user = models.OneToOneField(User)
@@ -25,7 +27,6 @@ class UserProfile(models.Model):
     completedOrders = models.ManyToManyField(Order, blank = True,related_name = "Tamamlanan Siparisler/Completed Orders+")
     currentOrders = models.ManyToManyField(Order, blank = True,related_name = "Simdiki Siparisler/Current Orders+")
     profileImage = models.ImageField(upload_to = 'profileimg',blank = True,null = True,verbose_name = "Resim Ekle/Add Picture")
-    
     def __str__(self):
         return self.user.username
 
@@ -33,3 +34,4 @@ def create_profile(sender,**kwargs):
     if(kwargs['created']):
         userProfile = UserProfile.objects.create(user=kwargs['instance'])
 post_save.connect(create_profile,sender = User)
+

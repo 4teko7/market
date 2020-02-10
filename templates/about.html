@@ -10,13 +10,13 @@
     <strong><img style = "witdh:18rem; height:18rem;"  alt = "Profile Image Is Empty" src = "{{profileImage.url}}"></strong>
     </div>
     <div class = "col-lg-6 col-xs-12 col-md-6" style = "margin-top:2rem;">
-    <h4 style = "overflow-wrap: break-word;">{{lang.username}} : <strong><em>{{request.user.username}}</em></strong></h4>
-    <h4 style = "overflow-wrap: break-word;">{{lang.firstname}} : <strong><em>{{request.user.first_name}}</em></strong></h4>
-    <h4 style = "overflow-wrap: break-word;">{{lang.lastname}} : <strong><em>{{request.user.last_name}}</em></strong></h4>
+    <h4 style = "overflow-wrap: break-word;">{{lang.username}} : <strong><em>{{user.username}}</em></strong></h4>
+    <h4 style = "overflow-wrap: break-word;">{{lang.firstname}} : <strong><em>{{user.first_name}}</em></strong></h4>
+    <h4 style = "overflow-wrap: break-word;">{{lang.lastname}} : <strong><em>{{user.last_name}}</em></strong></h4>
     <h4 style = "overflow-wrap: break-word;">{{lang.phoneNumber}} : <strong><em>{{profile.phone}}</em></strong></h4>
     <h4 style = "overflow-wrap: break-word;">{{lang.address}} : <strong><em>{{profile.address}}</em></strong></h4>
-    <h4 style = "overflow-wrap: break-word;">{{lang.lastLogin}} : <strong><em>{{request.user.last_login}}</em></strong></h4>
-    <h4 style = "overflow-wrap: break-word;">{{lang.joined}} : <strong><em>{{request.user.date_joined}}</em></strong></h4>
+    <h4 style = "overflow-wrap: break-word;">{{lang.lastLogin}} : <strong><em>{{user.last_login}}</em></strong></h4>
+    <h4 style = "overflow-wrap: break-word;">{{lang.joined}} : <strong><em>{{user.date_joined}}</em></strong></h4>
     <div style="text-align: center; margin-top: 1rem; margin-bottom:2rem;" class = "pull-right">
         <button type = "button" onclick="history.back()" class="btn btn-primary">{{lang.goBack}}</button>
         

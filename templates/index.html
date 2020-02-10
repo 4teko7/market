@@ -54,11 +54,11 @@
         <div class="row">
           
         <div class="col-md-6 col-lg-6 col-xs-12" style = "margin-top:1rem;">
-          <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
+          <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.orderProduct}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
         </div>
         
         <div class="col-md-6 col-lg-6 col-xs-12"><br>
-          <a href = "/users/about/"><scan style = "font-size:1.4rem;"><strong>{{lang.myProfile}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/about.png' %}></scan></a>
+          <a href = "/users/about/{{request.user.id}}/"><scan style = "font-size:1.4rem;"><strong>{{lang.myProfile}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/about.png' %}></scan></a>
         </div>
         
         <div class="col-md-12 col-lg-12 col-sm-12 container" style = "margin : auto auto;">
@@ -84,7 +84,7 @@
         {% if user.is_superuser %}
         <div class="row">
         <div  class="col-md-6 col-lg-6 col-xs-6" style = "margin-bottom:1rem;">
-          <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.product}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
+          <a href = "/products/allproducts/"><scan style = "font-size:1.4rem;"><strong>{{lang.orderProduct}}</strong><br><img style = "width:6rem;height:6rem;"src={% static 'img/products.png' %}></scan></a>
           </div>
         
         <div class="col-md-6 col-lg-6 col-xs-6">
@@ -251,7 +251,7 @@
                   {% endfor %}
           {% else %}
                   <div class="alert alert-warning">
-                      {{lang.noCurrentProduct}}
+                      {{lang.noCompletedProduct}}
                   </div>
           {% endif %}
 
@@ -277,7 +277,7 @@
     <h1>{{lang.pleaselogin}}</h1>
 </div>
 <div class="container" style = "text-align: center;">
-<a href = "/products/allproducts/"><scan style = "font-size:2rem;"><strong>{{lang.product}}</strong><br><img style = "width:10rem;height:10rem;"src={% static 'img/products.png' %}></scan></a>
+<a href = "/products/allproducts/"><scan style = "font-size:2rem;"><strong>{{lang.orderProduct}}</strong><br><img style = "width:10rem;height:10rem;"src={% static 'img/products.png' %}></scan></a>
 </div>
 {% endif %}
 

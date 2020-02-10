@@ -42,8 +42,7 @@ def addComment(req,id):
             messages.success(req,lang2['commentAdded'])
             return HttpResponseRedirect("/products/productdetail/"+id + "/")
         else:
-            if(len(comment.content) > 4000):
-                messages.success(req,lang['longComment'])
+            messages.success(req,lang2['formInvalid'])
             return HttpResponseRedirect("/products/productdetail/"+id + "/")
 @login_required(login_url="/users/login/")
 def addCommentComment(req,id):

@@ -27,17 +27,18 @@ def check(req):
         context = {"lang":lang2}
 
 @login_required(login_url="/users/login/")
-def about(req):
+def about(req,id):
 
     from .userLang import lang2
     check(req)
     global context
-
-    profile = UserProfile.objects.filter(user = req.user)
+    user = User.objects.get(id = id)
+    profile = UserProfile.objects.filter(user = user)
     if(profile):
         if(profile[0].profileImage):
             context['profileImage'] = profile[0].profileImage
         context['profile'] = profile[0]
+        context['user'] = user
     return render(req,"about.html",context)
 
 def registerUser(req):
@@ -139,7 +140,7 @@ def saveProfile(req):
         user.save()
         profile.save()
         messages.success(req,lang2['profileUpdated'])
-        return HttpResponseRedirect("/users/about/")
+        return HttpResponseRedirect("/users/about/"+str(user.id)+"/")
     else:
         return HttpResponseRedirect('/users/editprofile/')
 
@@ -275,8 +276,8 @@ def buyProduct(req,id):
     product = Product.objects.filter(id = id)
     
     if(req.user.is_authenticated):
-        profile = UserProfile.objects.filter(user = req.user)
-        form = buyProductForm(initial={'firstName': profile[0].firstName,'lastName':profile[0].lastName,'phone':profile[0].phone,"address":profile[0].address,"productAmount":1})
+        profile = UserProfile.objects.get(user = req.user)
+        form = buyProductForm(initial={'firstName': profile.firstName,'lastName':profile.lastName,'phone':profile.phone,"address":profile.address,"productAmount":1})
     else:form = buyProductForm()
     context['form'] = form
     context['product'] = product[0]
@@ -286,9 +287,17 @@ def buyProduct(req,id):
             
            
             if(req.user.is_authenticated):
+                profile.firstName = req.POST.get("firstName")
+                profile.lastName = req.POST.get("lastName")
+                profile.phone = req.POST.get("phone")
+                profile.address = req.POST.get("address")
+                req.user.first_name = req.POST.get("firstName")
+                req.user.last_name = req.POST.get("lastName")
+                req.user.save()
                 order = Order(user = req.user,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
                 order.save()
-                profile[0].currentOrders.add(order)
+                profile.currentOrders.add(order)
+                profile.save()
             else:
                 guest = GuestProfile(firstName = req.POST.get("firstName"),lastName = req.POST.get("lastName"),phone = req.POST.get("phone"),address = req.POST.get("address"))
                 guest.save()
