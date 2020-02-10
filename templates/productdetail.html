@@ -52,25 +52,16 @@ hr{
 
           <!-- Author -->
 
-          <p class="lead">
-            {{lang.by}}
 
-            <a href="#">Market</a>
-
-          </p>
 
           <hr>
 
-          <!-- Date/Time -->
-          <p>Posted on {{product.createdDate}}</p>
-
-          <hr>
 
           <!-- Preview Image -->
          {% if product.productImage %}
           <img class="img-fluid rounded" style = "width:100%;"src="{{product.productImage.url}}" alt="My Image">
-
-          <p class="lead">{{product.content|safe}}</p>
+          <br>
+          <p style = "margin-top:3rem;" class="lead">{{lang.definition}} : {{product.content|safe}}</p>
           <hr>
           <strong><em><h2 style = "text-align: center;">{{lang.ingredient}}</h2></em></strong>
           <hr>

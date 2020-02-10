@@ -84,6 +84,7 @@ tr = {
     'options':"Seçenekler",
     'allProducts':"Tüm Ürünler",
     "ingredient":"İçindekiler",
+    'definition':"Açıklama",
 
 
 # MESSAGES
@@ -111,7 +112,6 @@ tr = {
     'cantedit':'Sizin Olmayan Makaleyi Düzenleyemezsiniz !',
     "noUser":"Kullanıcı Bulunamadı.",
     'searchProduct':"Ürün Ara",
-
 }
 
 
@@ -203,6 +203,7 @@ en = {
     'options':"Options",
     'allProducts':"All Products",
     "ingredient":"Ingredients",
+    'definition':"Definition",
 
 # MESSAGES
     'noTodo':"There is no any Todo yet !",
