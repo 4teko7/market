@@ -20,7 +20,6 @@
   <tbody>
   {% if products %}
   {% for product in products %}
-  {% if not product.isPrivate %}
   
     <tr>
       
@@ -35,11 +34,7 @@
       </td>
       
       
-       
-      
     </tr>
-    
-    {% endif %}
     
 {% endfor %}
 {% else %}

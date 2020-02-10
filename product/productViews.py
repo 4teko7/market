@@ -182,10 +182,16 @@ def deleteProduct(req,id):
 def searchProduct(req):
     global context
     check(req)
-    keywords = req.GET.get('keywords')
-    if(keywords):
-        products = Product.objects.filter(title__contains = keywords)
-        context['products'] = products
+    keywords1 = req.GET.get('keywords1')
+    keywords2 = req.GET.get('keywords2')
+    if(len(keywords1)):
+        products1 = Product.objects.filter(title__contains = keywords1)
+        context['products'] = products1
+    else: 
+        products2 = Product.objects.filter(title__contains = keywords2)
+        context['products'] = products2
+
+
     return render(req,'allproducts.html',context)
 
 

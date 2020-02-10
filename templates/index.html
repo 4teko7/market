@@ -36,11 +36,13 @@
     {% if request.user.is_authenticated %}
 <div  id = "bg">
 <div class="container"   style = "margin : auto auto;text-align:center;" >
-<br><br>
+<br>
         <h2>{{lang.welcome}}, {% if request.user.is_authenticated %} {{ request.user.username }}  {% endif %}
+          {% if profileImage %}
                 <div class = "container col-lg-6 col-xs-12 col-md-6" align="middle" style = " margin : auto auto; display:inline;">
-                        <strong><img style = "witdh:6rem; height:6rem;"  class = "rounded-circle" src = "{{profileImage.url}}"></strong>
+                        <strong><img style = " max-width: 375px; overflow: hidden; width:6rem; height:6rem;"  class = "rounded-circle" src = "{{profileImage.url}}"></strong>
                         </div>
+              {% endif %}
         </h2>
         <hr>
     <div class="row">
@@ -62,11 +64,11 @@
         <div class="col-md-12 col-lg-12 col-sm-12 container" style = "margin : auto auto;">
           <form action = '/products/searchproduct/' class="form-inline">
             <div class="container" id = "smallScreen"><br>
-            <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search"><br>
+            <input class="form-control mr-sm-2 " name = "keywords1" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search"><br>
             <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
           </div>
           <div class="container" id = "largeScreen"><br>
-            <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
+            <input class="form-control mr-sm-2 " name = "keywords2" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
             <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
           </div>
         </form>
@@ -93,11 +95,11 @@
       <div class="col-md-12 col-lg-12 col-sm-12 container" style = "margin : auto auto;">
         <form action = '/products/searchproduct/' class="form-inline">
           <div class="container" id = "smallScreen"><br>
-          <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search"><br>
+          <input class="form-control mr-sm-2 " name = "keywords1" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search"><br>
           <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
         </div>
         <div class="container" id = "largeScreen"><br>
-          <input class="form-control mr-sm-2 " name = "keywords" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
+          <input class="form-control mr-sm-2 " name = "keywords2" style = "text-align:center;" type="text" placeholder="{{lang.searchProduct}}" aria-label="Search">
           <button class="btn btn-outline-success" style = "text-align:center;" type="submit">{{lang.search}}</button>
         </div>
       </form>

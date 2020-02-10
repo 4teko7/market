@@ -18,4 +18,4 @@ class GuestProfile(models.Model):
 
     
     def __str__(self):
-        return self.firstName + " " +  self.lastName
+        return self.firstName + " - " +  self.lastName + " - " + self.phone + "  - " + self.address
