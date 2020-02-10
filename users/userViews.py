@@ -170,8 +170,8 @@ def addProfileImage(req):
                             profile[0].save()
             # Product.author = req.user
 
-            messages.success(req,lang2['articleAdded'])
-            return HttpResponseRedirect("/users/about/")
+            messages.success(req,lang2['productAdded'])
+            return HttpResponseRedirect("/users/about/"+str(profile[0].user.id)+"/")
         else:
 
             return render(req,"addprofileimage.html",context)
@@ -274,7 +274,7 @@ def buyProduct(req,id):
     global context
 
     product = Product.objects.filter(id = id)
-    
+
     if(req.user.is_authenticated):
         profile = UserProfile.objects.get(user = req.user)
         form = buyProductForm(initial={'firstName': profile.firstName,'lastName':profile.lastName,'phone':profile.phone,"address":profile.address,"productAmount":1})
@@ -284,8 +284,8 @@ def buyProduct(req,id):
     if(req.method == "POST"):
         form = buyProductForm(req.POST)
         if(form.is_valid()):
-            
-           
+
+
             if(req.user.is_authenticated):
                 profile.firstName = req.POST.get("firstName")
                 profile.lastName = req.POST.get("lastName")
