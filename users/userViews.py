@@ -148,39 +148,32 @@ def addProfileImage(req):
     from .userLang import lang2
     check(req)
     global context
-    profile = UserProfile.objects.filter(user=req.user)
+    profile = UserProfile.objects.get(user=req.user)
 
     if(req.method == "POST"):
         form = addProfileImageForm(req.POST,req.FILES or None)
         if(form.is_valid()):
             if(form.cleaned_data.get("profileImage")):
-                if(UserProfile.objects.count() > 0):
-                    profile.delete()
-                profile = form.save(commit = False)
-                profile.user = req.user
                 profile.profileImage = form.cleaned_data.get("profileImage")
                 profile.save()
             else:
-                print("SILMEYE GELDI")
                 if(req.POST.get("profileImage-clear")):
-                    print("SILMEYE GELDI ICERIDE")
-                    if(profile):
-                        if(profile[0].profileImage):
-                            profile[0].profileImage = None
-                            profile[0].save()
+                    if(profile.profileImage):
+                        profile.profileImage = None
+                        profile.save()
             # Product.author = req.user
 
-            messages.success(req,lang2['productAdded'])
-            return HttpResponseRedirect("/users/about/"+str(profile[0].user.id)+"/")
+            messages.success(req,lang2['profilImageUpdated'])
+            return HttpResponseRedirect("/users/about/"+str(req.user.id)+"/")
         else:
 
             return render(req,"addprofileimage.html",context)
     else:
         form = addProfileImageForm()
         if(profile):
-            if(profile[0].profileImage):
-                context['profileImage'] = profile[0].profileImage
-                form = addProfileImageForm(initial={'profileImage': profile[0].profileImage})
+            if(profile.profileImage):
+                context['profileImage'] = profile.profileImage
+                form = addProfileImageForm(initial={'profileImage': profile.profileImage})
         context['form'] = form
         return render(req,"addprofileimage.html",context)
 
@@ -303,7 +296,7 @@ def buyProduct(req,id):
                 guest.save()
                 order = Order(guestProfile = guest,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
-                messages.warning(req,lang2['formInvalid'])
+            messages.warning(req,lang2['orderReceived'])
 
             return HttpResponseRedirect('/')
         else:

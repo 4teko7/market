@@ -90,6 +90,8 @@ tr = {
     "fullPrice":"Toplam Ücret",
     'statusOfUser':"Kullanıcı Durumu",
     'phone':"Telefon",
+    'profilImageUpdated':"Profil Fotoğrafı Güncellendi.",
+
 
 
 # MESSAGES
@@ -215,6 +217,7 @@ en = {
     "fullPrice":"Full Price",
     'statusOfUser':"User Status",
     'phone':"Phone",
+    'profilImageUpdated':"Profil Image Updated",
 
 # MESSAGES
     'noCurrentProduct': "Currently There is no any Order",
