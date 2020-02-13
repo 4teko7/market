@@ -18,6 +18,7 @@ class Product(models.Model):
     # productAmount = models.IntegerField(default = 1,verbose_name="Ürün Miktarı/Product Amount")
     productPrice = models.FloatField(blank = False,null = False,verbose_name = "Fiyat/Price")
     ingredients = models.ManyToManyField(Ingredient, blank = True,related_name = "İçerik/Ingredient+")
+    sold = models.IntegerField(default = 0,null = False,verbose_name="Times Sold")
     # orderedDate = models.DateTimeField(default = '',verbose_name = lang2['orderedDate'])
     # orderStatus = models.CharField(max_length = 100,default = "Sipariş Alındı.",verbose_name = lang2['orderStatus'])
     class Meta:

@@ -79,17 +79,17 @@ def mainPage(req):
 
 
 
-def searchUser(req):
-    global context
-    global lang
-    check(req)
-    keywords = req.GET.get('keywords')
-    context['lang'] = lang
-    if(keywords):
-        users = User.objects.filter(username__contains = keywords)
+# def searchUser(req):
+#     global context
+#     global lang
+#     check(req)
+#     keywords = req.GET.get('keywords')
+#     context['lang'] = lang
+#     if(keywords):
+#         users = User.objects.filter(username__contains = keywords)
 
-        context['users'] = users
-    return render(req,'allusers.html',context)
+#         context['users'] = users
+#     return render(req,'allusers.html',context)
 
 
      
@@ -112,7 +112,7 @@ urlpatterns = [
     url('users/', include("users.userRoutes")),
     url("products/",include("product.productRoutes")),
     url("todos/",include("todo.todoRoutes")),
-    url('searchUser/',searchUser,name = "searchUser"),
+    # url('searchUser/',searchUser,name = "searchUser"),
     url('comments/',include('comment.commentRoutes')),
     url('language/',language,name = "language"),
     url('^$',mainPage,name = "mainPage"),

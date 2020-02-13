@@ -91,6 +91,7 @@ tr = {
     'statusOfUser':"Kullanıcı Durumu",
     'phone':"Telefon",
     'profilImageUpdated':"Profil Fotoğrafı Güncellendi.",
+    'productNotFound':"Ürün Bulunamadı.",
 
 
 
@@ -218,6 +219,7 @@ en = {
     'statusOfUser':"User Status",
     'phone':"Phone",
     'profilImageUpdated':"Profil Image Updated",
+    'productNotFound':"Product Not Found",
 
 # MESSAGES
     'noCurrentProduct': "Currently There is no any Order",

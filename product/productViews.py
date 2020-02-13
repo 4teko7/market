@@ -180,17 +180,22 @@ def deleteProduct(req,id):
 
 
 def searchProduct(req):
+    from .productLang import lang2
     global context
     check(req)
     keywords1 = req.GET.get('keywords1')
     keywords2 = req.GET.get('keywords2')
+
     if(len(keywords1)):
         products1 = Product.objects.filter(title__contains = keywords1)
         context['products'] = products1
     else: 
+
         products2 = Product.objects.filter(title__contains = keywords2)
         context['products'] = products2
 
+    if(len(context['products']) <= 0):
+        messages.info(req,lang2['productNotFound'])
 
     return render(req,'allproducts.html',context)
 

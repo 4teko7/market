@@ -266,14 +266,14 @@ def buyProduct(req,id):
     check(req)
     global context
 
-    product = Product.objects.filter(id = id)
+    product = Product.objects.get(id = id)
 
     if(req.user.is_authenticated):
         profile = UserProfile.objects.get(user = req.user)
         form = buyProductForm(initial={'firstName': profile.firstName,'lastName':profile.lastName,'phone':profile.phone,"address":profile.address,"productAmount":1})
     else:form = buyProductForm()
     context['form'] = form
-    context['product'] = product[0]
+    context['product'] = product
     if(req.method == "POST"):
         form = buyProductForm(req.POST)
         if(form.is_valid()):
@@ -287,15 +287,17 @@ def buyProduct(req,id):
                 req.user.first_name = req.POST.get("firstName")
                 req.user.last_name = req.POST.get("lastName")
                 req.user.save()
-                order = Order(user = req.user,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now())
+                order = Order(user = req.user,product = product,title = product.title,productImage = product.productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product.productPrice,orderedDate=datetime.datetime.now())
                 order.save()
                 profile.currentOrders.add(order)
                 profile.save()
             else:
                 guest = GuestProfile(firstName = req.POST.get("firstName"),lastName = req.POST.get("lastName"),phone = req.POST.get("phone"),address = req.POST.get("address"))
                 guest.save()
-                order = Order(guestProfile = guest,product = product[0],title = product[0].title,productImage = product[0].productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product[0].productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
+                order = Order(guestProfile = guest,product = product,title = product.title,productImage = product.productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product.productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
+            product.sold += 1
+            product.save()
             messages.warning(req,lang2['orderReceived'])
 
             return HttpResponseRedirect('/')
