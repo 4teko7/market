@@ -106,7 +106,7 @@ def logoutUser(req):
 
     logout(req)
     messages.success(req,lang2['logoutMessage'])
-    return render(req,"index.html",context)
+    return HttpResponseRedirect('/')
 
 @login_required(login_url="/users/login/")
 def editProfile(req):
@@ -296,7 +296,7 @@ def buyProduct(req,id):
                 guest.save()
                 order = Order(guestProfile = guest,product = product,title = product.title,productImage = product.productImage,productAmount = req.POST.get("productAmount"),totalPrice = float(req.POST.get("productAmount")) * product.productPrice,orderedDate=datetime.datetime.now(),isGuest = True)
                 order.save()
-            product.sold += 1
+            product.sold += int(req.POST.get("productAmount"))
             product.save()
             messages.warning(req,lang2['orderReceived'])
 

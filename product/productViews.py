@@ -115,8 +115,12 @@ def productDetail(req,id):
 
 def allProducts(req):
     products = Product.objects.all()
+    mostSoldProducts = products.order_by('sold')[:5:-1]
+    
     check(req)
     global context
+    context['mostSoldProducts'] = mostSoldProducts[1:len(mostSoldProducts)]
+    context['firstSold'] = mostSoldProducts[0]
     context['products'] = products
     return render(req,"allproducts.html",context)
 

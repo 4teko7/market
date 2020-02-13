@@ -56,6 +56,9 @@ def mainPage(req):
     global lang
     global context
 
+
+    products = Product.objects.all()
+    products = products.order_by('sold')[:5:-1]
     check(req)
     currentOrders = ""
     completedOrders = ""
@@ -72,7 +75,8 @@ def mainPage(req):
     context['lang'] = lang
     if(currentOrders): context['currentOrders'] = currentOrders.all()
     if(completedOrders): context['completedOrders'] = completedOrders.all()
-
+    context['mostSoldProducts'] = products[1:len(products)]
+    context['firstSold'] = products[0]
     return render(req,"index.html",context)
 
 
