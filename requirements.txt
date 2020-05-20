@@ -1,4 +1,4 @@
-Django==1.11.27
+Django==1.11.28
 django-ckeditor==5.7.1
 django-cleanup
 django-crispy-forms
