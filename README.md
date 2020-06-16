@@ -1,6 +1,6 @@
 # market
 
- <h3>Market Application (e-commerce) Python3 - Django</h3>
+ <h3>Market Application (e-commerce) Python2.7 - Django</h3>
   <hr>
 
   <p>
