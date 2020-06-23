@@ -1,4 +1,4 @@
-# market
+# Django-MarketApp-2.7
 
  <h3>Market Application (e-commerce) Python2.7 - Django</h3>
   <hr>
@@ -17,19 +17,19 @@
   
  <div align="center" style="display:flex;">
  
-  <img  src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/IMG_20200520_114506.jpg">
+  <img  src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/IMG_20200520_114506.jpg">
 <hr> 
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-07-249_com.opera.browser.jpg">
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-04-27-20-08-48-233_com.tekin.blogapp.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-07-249_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-04-27-20-08-48-233_com.tekin.blogapp.jpg">
 <hr> 
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-11-637_com.opera.browser.jpg">
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-14-039_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-11-637_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-14-039_com.opera.browser.jpg">
 <hr> 
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-04-27-20-09-17-682_com.tekin.blogapp.jpg">
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-59-57-290_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-04-27-20-09-17-682_com.tekin.blogapp.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-59-57-290_com.opera.browser.jpg">
 <hr>
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-49-044_com.opera.browser.jpg">
-  <img height="800" src = "https://github.com/4teko7/market/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-59-06-052_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-58-49-044_com.opera.browser.jpg">
+  <img height="800" src = "https://github.com/4teko7/Django-MarketApp-2.7/blob/master/Market%20Application%20Photos/Screenshot_2020-02-15-12-59-06-052_com.opera.browser.jpg">
 <hr>
 </div>
 
